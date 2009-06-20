@@ -142,6 +142,22 @@ void corner_collision(  Uint8 xblock, Uint8 yblock)
   }
 }
 
+void ResetLevels() {
+	for (i=0;i<=NUMBER_OF_LEVELS[levelset];i++) {
+		int x,y;
+		
+		finished[i]=0;
+		for (x=0; x<20; x++) {
+			for (y=0; y<15; y++) {
+				if (levelset == 0)
+					map[i][y][x] = origMap[i][y][x];
+				else
+					map[i][y][x] = origMap2[i][y][x];
+			}
+		}
+	}
+}
+
 /**
  * If players p1 and p2 collide, moves them out of the collision and makes them bounce.
  */
@@ -1117,22 +1133,6 @@ void LoadSound()
 	}
 }
 #endif
-
-void ResetLevels() {
-	for (i=0;i<=NUMBER_OF_LEVELS[levelset];i++) {
-		int x,y;
-		
-		finished[i]=0;
-		for (x=0; x<20; x++) {
-			for (y=0; y<15; y++) {
-				if (levelset == 0)
-					map[i][y][x] = origMap[i][y][x];
-				else
-					map[i][y][x] = origMap2[i][y][x];
-			}
-		}
-	}
-}
 
 int main(int argc, char *argv[])
 {
