@@ -1,0 +1,46 @@
+
+--------------------------------< BumpRace >------------------------------------
+
+BumpRace is a simple arcade game. I'd like to receive a lot of comments and
+suggestions. You can get the newest version of BumpRace at:
+    http://members.linuxstart.com/~karlb/
+And you can reach me via e-mail:
+    karlb@gmx.net
+	
+Keys:
+	PLAYER 1
+	<arrow keys> 			  moving
+	<right control>                   special ability
+
+	PLAYER 2
+	<a>     	                  left
+	<d>				  right
+	<w>				  thrust
+	<left control>			  special ability	
+
+To run this, you need the SDL-library. If you don't have it, get it from:
+ http://www.devolution.com/~slouken/SDL/
+
+-----------------------------< RACER ABILITIES >--------------------------------
+
+UFO-Racer:  slows down automatically
+V-Shaped-Racer:  has 10% extra time
+Rocket-Racer:  press control for extra speed
+Last Racer:  press control to stick to walls
+
+--------------------------------< PARAMETER >-----------------------------------
+
+"--levelset 1"             selects an alternative, hard level set
+"--nofullscreen" "-f"      guess
+"--nosound"      "-s"      guess again
+"--notfinal"     "-n"      no title screen (nice for develolopers)
+"--noparticles"  "-t"      turns of paticles. good for slow computers.
+"--pageflip"     "-p"      flicker-free fullscreen, slow and extremly buggy
+"--precision [value]"      sets the precison of the collisions (default=10) 
+                           using this is not recommended
+
+---------------------------------< LICENSE >------------------------------------
+
+This game is available under the GNU General Public License version 2.
+See COPYING for details.
+
