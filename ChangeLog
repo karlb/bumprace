@@ -1,0 +1,230 @@
+Version 1.5.3
+ -fixed keyboard input after crash/timeout combination (thanks Bas Wijnen)
+ -added more info to AUTHORS file
+ -updated automake/autotools
+
+Version 1.5.2
+ -new background picture (thanks tozzie!)
+ -players collide in two player mode (thanks Christoph Sommer)
+ -minor fixes and cleanups (thanks Martin Michlmayr, Christoph Sommer)
+ -improved backspace handling in text input (fixes problem under Mac OS X)
+
+Version 1.5.1
+ -updated autoconf files
+ -improved second level set and fixed a bug concerning alternate level
+  sets (Thanks Mehdi Yousfi)
+ -removed more warnings
+ -fade in should behave identical on all systems now
+ -removed SDL_Image files from source and added SDL_Image as external dep
+ -slighly changed configure.in
+
+Version 1.5.0
+ -replaced old fadeout by a new one, which should be fast enough on every
+  system
+ -added XCode project file for easy compilation under OS X
+ -minor source code fixes to allow compilation under OS X
+ -added Mac OS X icon
+ -removed a lot of warnings
+ -applied some patches (and forgot to note what they changed...)
+
+Version 1.46
+ -more hard levels (use --levelset 1)
+ -speed increase on some systems (probably)
+ -fixed choppy sound problem (perhaps)
+
+Version 1.45
+ -fixed crash-after-racer-selection bug. I can't understand why this bug
+  didn't cause a crash on my computer... (Thanks Ben Marzinski)
+
+Version 1.44
+ -2 new levels
+ -better balanced racers
+ -changed the URL on the help screen
+ -fixed "time boni are gone forever" bug
+
+Version 1.??
+ -new aclocal file (fixes compilation on arm)
+
+Version 1.43
+ -no SDL_mixer included
+ -command line help
+ -changed command line options
+ -new option: no fadeout for slow computers
+ -fixed a bug concerning wrong video flags
+
+Version 1.42
+ -game now easier (some smaller changes)
+ -other changes?? (I deleted changelog... ooops!)
+ -now using SDL>=1.1.5 (including a bug workaround)
+ -hiscore bug finally fixed
+
+Version 1.4
+ -the highscore list is shown properly after the name has been entered
+ -the lasers are now animated
+ -messages like "crashed" are displayed until all particles have disappeared
+ -the shot leave the cannon more precisely
+ -a new level
+ -the racer can move closer to the edges of the screen
+ -changed some tile graphics
+ -new timeout picture
+ -new scoring system
+ -changed collision code (I hope it's better...)
+ -fixed a small update bug (nothing serious)
+ -fixed a bug in the racer selection menu
+ -bumprace uses always 16 bpp again, cause there are some problems with 8bpp
+
+Version 1.3
+ -now using input from sdl-config for configure
+ -configure now checks for mathlib (-lm), too, if it is needed
+ -bumprace can now be installed anywhere 
+ -the version number, which is displayed at startup, changes automatically
+ -the last version installed an unneccessary header file -> fixed
+ -removed a timeout bug when playing two times without quitting
+ -music is faded out when quitting
+ -removed some other bugs when played two times
+ -added highscore list
+ -now using SFont for fonts output
+ -using the gfx.cpp of penguin-command which makes coding easier for me
+  and it has also better error checking.
+ -the particles are much better now.
+ -there's a frame limit now.
+ -a BumpRace Version without mixer is available
+ -changed the special key to left ctrl for player 2
+ -new images for "crashed" and "level completed"
+ -BumpRace can now run in any color depth, and uses the color depth of the
+  X-server
+ -some new tiles
+ -png support
+
+Version 1.2
+ -fixed a bug in 2p team mode (the game didn't terminate after the timeout)
+ -reduced the time between crashing and the crash sound by decreasing the
+  chunk size.
+ -repaired wrong output when the sound is turned off due a used device
+ -fixed a bug in HandleShots() that could cause BumpRace to crash when
+  the free CPU time for BumpRace is very low.
+ -fixed a bug that caused the racer selction to be skipped on fast computers
+ -added a quit button to the main menu. The game now returns to the main 
+  menu after the scoring.
+ -moved the menus to menu.c 
+ -level numbers are displayed again (was a bug in 1.1)
+ -the cannon is now displayed correctly
+ -reduced cannon's turn speed
+ -added a fullscreen fade after the scoring. This is very slow under Linux,
+  but this will be better with XFree 4, when hardware acceleration is ready.
+ -added configure/automake/autoconf support. This is not prefect yet, but
+  I'm still working on it
+ -modified LoadImage() to search for the graphic files in different
+  directories
+ -modified the sound and font loading to use the path selected by LoadImage
+ -modified the README file, deleted README-SOURCE and created NEWS,AUTHORS
+  and INSTALL files
+ -better directory stucture
+ -fullscreen mode is default now, cause the new SDL fullscreen code works
+  perfect.
+ -configure now checks for the needed libs and allows "make install"
+ -the points hasn't been displayed correctly in competition mode. fixed.
+ -now using SDL_Mixer 1.0.4 
+
+Version 1.1
+ -moved some gfx functions into gfx.c
+ -added jpg support
+ -all loaded images are converted to the pixel format of the screen surface.
+  This should speed up bumprace and increase the image quality.
+ -added some startup output
+ -BumpRace is now using a backbuffer. This increases the memory usage but it
+  makes a lot of programming easier and faster.
+ -some pics are converted to jpg -> smaller download
+ -BumpRace doesn't quit when it can't find a sound device, now it just turns
+  the sound off
+ -The time display is now labelled with "TIME LEFT" and the time decreases
+  from the sides to the middle
+ -You can quit BumpRace now by pressing the close button of your window manager
+ -moved the particle code to particles.c
+ -added the most complex obstacle: the cannon! This makes the game much more
+  interesting IMO.
+ -Racer are now handled very similar to shots and particles. This allows
+  multiple racers, and eleminates some reasons for flickering.
+ -yet another background
+ -added two new game modes: 2player teamwork and 2player competition
+ -added a nice menu for selecting the game mode
+ -the startup message (This is free software...) is now faded in and out.
+ -added simple scoring
+
+Version 1.00
+ -4 more levels (now 14).
+ -added output "You have completed ?? levels". Windows users won't be able to 
+  see this, cause this appears in the shell after the game.
+ -added tree levels (now 17)that were done by Stephan. Thanks!
+ -added lasers (obstacles that switch on and off)
+ -other background
+ -encapsulated the particle routines into the "correct" functions.
+ -fixes a particle removing bug over transparent surfaces
+ -added email/web adresses to the credits
+ -added racer info to the menu
+ -the data is loaded while displaying the title screen -> faster startup
+ -added a new racer
+ -added the "sticky" ability
+ -improved collision
+ -time is only updated when the change is visible
+ -time can now show a wider range of time
+ -got timidity out of the sound system -> smaller package
+
+Version 0.90
+ -fixed the "quickstart bug" again :-)
+ -now using SDL 0.10.0
+ -added short command line parameters. The old ones start with -- now.
+ -added particle effects ( thanks Lion! )
+ -added new sound effects
+ -fixed time display bug
+
+Version 0.80
+ -fixed the "quick start" bug
+ -added help (and credits) screen
+ -added a fadeout after every crash and the timeout
+ -added fps counter (-fps , but it shows a very high value, so I'm not sure 
+  if that's correct: On my Cyrix200 it does 170fps!)
+ -new 3D-Logo
+ -added the "real" auto-slowdown ablility
+ -added gravity
+ -put racer abilities into variables
+ -one new level with gravity
+ -rendered new racer graphics, now with 18 pics for a smoother rotation
+  Is anyone interested in the .blend files?
+ -now 3 racers are available
+ -added racer ability extra_time. This is the percentage of extra time at the
+  beginning of the game
+ -new graphic for the info board
+ -lifetime if now displayed as a colored bar decreasing from green to red
+
+Version 0.70:
+ -fonts are now blitted correctly
+ -random level select
+ -more levels (now 11)
+ -bonus time for every completed level
+ -collision rewritten
+ -moved the levels to the file "levels.h"
+ -new background(s)
+ -added the output "This is free software..." like recommended.
+
+Version 0.60:
+ -added timeout
+ -added (terrible) fonts
+ -better (but still flickering and buggy) fullscreen mode
+ -fixed some bugs
+ -added music: 22khz, 16bit, stereo!
+ -added sound effect(s)
+ -BumpRace is now available under the GNU General Public License version 2.
+ -added command line parameter
+ -added three levels
+
+Version 0.45:
+ -one speed on all systems
+ -cleaned up the source
+ -title screen
+ -smaller background ( 144 KB )
+ -added one level
+
+------------------------------------< BUGS >------------------------------------
+
+no known bugs -> please mail any bug reports to karlb@gmx.net

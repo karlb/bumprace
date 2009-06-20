@@ -1,0 +1,14 @@
+                              BUMPRACE FAQ
+--------------------------------------------------------------------------------
+Q:  Fullscreen mode does not work on my computer.
+A:  You probably have an old SDL version. SDL 1.2.x is reccomended
+    for this release.
+--------------------------------------------------------------------------------
+Q:  BumpRace runs too slow on my computer.
+A:  1. turn off particles (-t / --noparticles)
+    2. turn off fadeouts  (-o / --nofadeout)
+    3. Start your X server at 16 bpp color depth. (startx -- -bpp 16)
+--------------------------------------------------------------------------------
+Q:  My question is not written here.
+A:  Then write a mail: karlb@gmx.net or get the newest version of BumpRace
+    from http://www.linux-games.com

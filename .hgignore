@@ -1,0 +1,11 @@
+syntax: glob
+*.orig
+*.rej
+*~
+*.o
+tests/*.err
+macosx/build/*
+*.DS_Store
+
+syntax: regexp
+.*\#.*\#$

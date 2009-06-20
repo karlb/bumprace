@@ -1,0 +1,465 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXApplicationTarget section */
+		29B97326FDCFA39411CA2CEA /* BumpRace */ = {
+			isa = PBXApplicationTarget;
+			buildConfigurationList = CB06E926086BFC0F001241D7 /* Build configuration list for PBXApplicationTarget "BumpRace" */;
+			buildPhases = (
+				29B97327FDCFA39411CA2CEA /* Headers */,
+				29B97328FDCFA39411CA2CEA /* Resources */,
+				29B9732BFDCFA39411CA2CEA /* Sources */,
+				29B9732DFDCFA39411CA2CEA /* Frameworks */,
+				CBCCF5AA07E1DA0D00E580F0 /* CopyFiles */,
+			);
+			dependencies = (
+			);
+			name = BumpRace;
+			productInstallPath = "$(HOME)/Applications";
+			productName = bumprace;
+			productReference = 17587328FF379C6511CA2CBB /* BumpRace.app */;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleIconFile</key>
+	<string>bumprace</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.1</string>
+	<key>NSMainNibFile</key>
+	<string>SDLMain.nib</string>
+	<key>NSPrincipalClass</key>
+	<string>SDLApplication</string>
+	<key>bumprace</key>
+	<string>SDL Cocoa App</string>
+</dict>
+</plist>
+";
+		};
+/* End PBXApplicationTarget section */
+
+/* Begin PBXBuildFile section */
+		089C165EFE840E0CC02AAC07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		1058C7A3FEA54F0111CA2CBB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		B2F367C604C7ADC700A80002 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = B2F367C504C7ADC700A80002 /* SDLMain.nib */; };
+		CB06EA62086C159B001241D7 /* levels2.h in Headers */ = {isa = PBXBuildFile; fileRef = CB06EA61086C159B001241D7 /* levels2.h */; };
+		CB2E0CC207315282001B8137 /* data in Resources */ = {isa = PBXBuildFile; fileRef = CB2E0C2107315282001B8137 /* data */; };
+		CBA4B2070731431B003EC668 /* bumprace.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA4B1FA0731431B003EC668 /* bumprace.c */; };
+		CBA4B2080731431B003EC668 /* bumprace.h in Headers */ = {isa = PBXBuildFile; fileRef = CBA4B1FB0731431B003EC668 /* bumprace.h */; };
+		CBA4B2090731431B003EC668 /* font.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA4B1FC0731431B003EC668 /* font.c */; };
+		CBA4B20A0731431B003EC668 /* font.h in Headers */ = {isa = PBXBuildFile; fileRef = CBA4B1FD0731431B003EC668 /* font.h */; };
+		CBA4B20B0731431B003EC668 /* gfx.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA4B1FE0731431B003EC668 /* gfx.c */; };
+		CBA4B20C0731431B003EC668 /* gfx.h in Headers */ = {isa = PBXBuildFile; fileRef = CBA4B1FF0731431B003EC668 /* gfx.h */; };
+		CBA4B20D0731431B003EC668 /* levels.h in Headers */ = {isa = PBXBuildFile; fileRef = CBA4B2000731431B003EC668 /* levels.h */; };
+		CBA4B20E0731431B003EC668 /* menu.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA4B2010731431B003EC668 /* menu.c */; };
+		CBA4B20F0731431B003EC668 /* menu.h in Headers */ = {isa = PBXBuildFile; fileRef = CBA4B2020731431B003EC668 /* menu.h */; };
+		CBA4B2100731431B003EC668 /* options.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA4B2030731431B003EC668 /* options.c */; };
+		CBA4B2110731431B003EC668 /* options.h in Headers */ = {isa = PBXBuildFile; fileRef = CBA4B2040731431B003EC668 /* options.h */; };
+		CBA4B2120731431B003EC668 /* particles.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA4B2050731431B003EC668 /* particles.c */; };
+		CBA4B2130731431B003EC668 /* particles.h in Headers */ = {isa = PBXBuildFile; fileRef = CBA4B2060731431B003EC668 /* particles.h */; };
+		CBCCF5B607E1DA6200E580F0 /* SDL_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBCCF5B307E1DA6200E580F0 /* SDL_image.framework */; };
+		CBCCF5B707E1DA6200E580F0 /* SDL_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBCCF5B407E1DA6200E580F0 /* SDL_mixer.framework */; };
+		CBCCF5B807E1DA6200E580F0 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBCCF5B507E1DA6200E580F0 /* SDL.framework */; };
+		CBCCF65207E1DA8800E580F0 /* SDL_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBCCF5B307E1DA6200E580F0 /* SDL_image.framework */; };
+		CBCCF65307E1DA8800E580F0 /* SDL_mixer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBCCF5B407E1DA6200E580F0 /* SDL_mixer.framework */; };
+		CBCCF65407E1DA8800E580F0 /* SDL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBCCF5B507E1DA6200E580F0 /* SDL.framework */; };
+		CBCCF67607E1E21D00E580F0 /* bumprace.icns in Resources */ = {isa = PBXBuildFile; fileRef = CBCCF67507E1E21D00E580F0 /* bumprace.icns */; };
+		F5A47AA101A0483001D3D55B /* SDLMain.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A47A9D01A0482F01D3D55B /* SDLMain.h */; };
+		F5A47AA301A0483001D3D55B /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A47A9E01A0483001D3D55B /* SDLMain.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CBCCF5AA07E1DA0D00E580F0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CBCCF65207E1DA8800E580F0 /* SDL_image.framework in CopyFiles */,
+				CBCCF65307E1DA8800E580F0 /* SDL_mixer.framework in CopyFiles */,
+				CBCCF65407E1DA8800E580F0 /* SDL.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		17587328FF379C6511CA2CBB /* BumpRace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = BumpRace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		B2F367C504C7ADC700A80002 /* SDLMain.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = SDLMain.nib; sourceTree = "<group>"; };
+		CB06EA61086C159B001241D7 /* levels2.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = levels2.h; path = ../src/levels2.h; sourceTree = SOURCE_ROOT; };
+		CB2E0C2107315282001B8137 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = ../data; sourceTree = SOURCE_ROOT; };
+		CBA4B1FA0731431B003EC668 /* bumprace.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = bumprace.c; path = ../src/bumprace.c; sourceTree = SOURCE_ROOT; };
+		CBA4B1FB0731431B003EC668 /* bumprace.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = bumprace.h; path = ../src/bumprace.h; sourceTree = SOURCE_ROOT; };
+		CBA4B1FC0731431B003EC668 /* font.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = font.c; path = ../src/font.c; sourceTree = SOURCE_ROOT; };
+		CBA4B1FD0731431B003EC668 /* font.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = font.h; path = ../src/font.h; sourceTree = SOURCE_ROOT; };
+		CBA4B1FE0731431B003EC668 /* gfx.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = gfx.c; path = ../src/gfx.c; sourceTree = SOURCE_ROOT; };
+		CBA4B1FF0731431B003EC668 /* gfx.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = gfx.h; path = ../src/gfx.h; sourceTree = SOURCE_ROOT; };
+		CBA4B2000731431B003EC668 /* levels.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = levels.h; path = ../src/levels.h; sourceTree = SOURCE_ROOT; };
+		CBA4B2010731431B003EC668 /* menu.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = menu.c; path = ../src/menu.c; sourceTree = SOURCE_ROOT; };
+		CBA4B2020731431B003EC668 /* menu.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = menu.h; path = ../src/menu.h; sourceTree = SOURCE_ROOT; };
+		CBA4B2030731431B003EC668 /* options.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = options.c; path = ../src/options.c; sourceTree = SOURCE_ROOT; };
+		CBA4B2040731431B003EC668 /* options.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = options.h; path = ../src/options.h; sourceTree = SOURCE_ROOT; };
+		CBA4B2050731431B003EC668 /* particles.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = particles.c; path = ../src/particles.c; sourceTree = SOURCE_ROOT; };
+		CBA4B2060731431B003EC668 /* particles.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = particles.h; path = ../src/particles.h; sourceTree = SOURCE_ROOT; };
+		CBCCF5B307E1DA6200E580F0 /* SDL_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_image.framework; path = /Library/Frameworks/SDL_image.framework; sourceTree = "<absolute>"; };
+		CBCCF5B407E1DA6200E580F0 /* SDL_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_mixer.framework; path = /Library/Frameworks/SDL_mixer.framework; sourceTree = "<absolute>"; };
+		CBCCF5B507E1DA6200E580F0 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
+		CBCCF67507E1E21D00E580F0 /* bumprace.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = bumprace.icns; sourceTree = SOURCE_ROOT; };
+		F5A47A9D01A0482F01D3D55B /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SDLMain.h; sourceTree = SOURCE_ROOT; };
+		F5A47A9E01A0483001D3D55B /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SDLMain.m; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		29B9732DFDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1058C7A3FEA54F0111CA2CBB /* Cocoa.framework in Frameworks */,
+				CBCCF5B607E1DA6200E580F0 /* SDL_image.framework in Frameworks */,
+				CBCCF5B707E1DA6200E580F0 /* SDL_mixer.framework in Frameworks */,
+				CBCCF5B807E1DA6200E580F0 /* SDL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F5A47A9D01A0482F01D3D55B /* SDLMain.h */,
+				F5A47A9E01A0483001D3D55B /* SDLMain.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17587328FF379C6511CA2CBB /* BumpRace.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* bumprace */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = bumprace;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				CBA4B1FA0731431B003EC668 /* bumprace.c */,
+				CBA4B1FB0731431B003EC668 /* bumprace.h */,
+				CBA4B1FC0731431B003EC668 /* font.c */,
+				CBA4B1FD0731431B003EC668 /* font.h */,
+				CBA4B1FE0731431B003EC668 /* gfx.c */,
+				CBA4B1FF0731431B003EC668 /* gfx.h */,
+				CBA4B2000731431B003EC668 /* levels.h */,
+				CB06EA61086C159B001241D7 /* levels2.h */,
+				CBA4B2010731431B003EC668 /* menu.c */,
+				CBA4B2020731431B003EC668 /* menu.h */,
+				CBA4B2030731431B003EC668 /* options.c */,
+				CBA4B2040731431B003EC668 /* options.h */,
+				CBA4B2050731431B003EC668 /* particles.c */,
+				CBA4B2060731431B003EC668 /* particles.h */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CBCCF67507E1E21D00E580F0 /* bumprace.icns */,
+				CB2E0C2107315282001B8137 /* data */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				B2F367C504C7ADC700A80002 /* SDLMain.nib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+				CBCCF5B307E1DA6200E580F0 /* SDL_image.framework */,
+				CBCCF5B407E1DA6200E580F0 /* SDL_mixer.framework */,
+				CBCCF5B507E1DA6200E580F0 /* SDL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		29B97327FDCFA39411CA2CEA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5A47AA101A0483001D3D55B /* SDLMain.h in Headers */,
+				CBA4B2080731431B003EC668 /* bumprace.h in Headers */,
+				CBA4B20A0731431B003EC668 /* font.h in Headers */,
+				CBA4B20C0731431B003EC668 /* gfx.h in Headers */,
+				CBA4B20D0731431B003EC668 /* levels.h in Headers */,
+				CBA4B20F0731431B003EC668 /* menu.h in Headers */,
+				CBA4B2110731431B003EC668 /* options.h in Headers */,
+				CBA4B2130731431B003EC668 /* particles.h in Headers */,
+				CB06EA62086C159B001241D7 /* levels2.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = CB06E92A086BFC0F001241D7 /* Build configuration list for PBXProject "bumprace" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* bumprace */;
+			projectDirPath = "";
+			projectRoot = ..;
+			targets = (
+				29B97326FDCFA39411CA2CEA /* BumpRace */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		29B97328FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				089C165EFE840E0CC02AAC07 /* InfoPlist.strings in Resources */,
+				B2F367C604C7ADC700A80002 /* SDLMain.nib in Resources */,
+				CB2E0CC207315282001B8137 /* data in Resources */,
+				CBCCF67607E1E21D00E580F0 /* bumprace.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		29B9732BFDCFA39411CA2CEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5A47AA301A0483001D3D55B /* SDLMain.m in Sources */,
+				CBA4B2070731431B003EC668 /* bumprace.c in Sources */,
+				CBA4B2090731431B003EC668 /* font.c in Sources */,
+				CBA4B20B0731431B003EC668 /* gfx.c in Sources */,
+				CBA4B20E0731431B003EC668 /* menu.c in Sources */,
+				CBA4B2100731431B003EC668 /* options.c in Sources */,
+				CBA4B2120731431B003EC668 /* particles.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CB06E927086BFC0F001241D7 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/SDL_image.framework/Headers,
+					/Library/Frameworks/SDL_mixer.framework/Headers,
+					/Library/Frameworks/SDL.framework/Headers,
+				);
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = (
+					"-DSOUND",
+					"-Wall",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SDL,
+					"-framework",
+					SDL_image,
+					"-framework",
+					SDL_mixer,
+					"-bind_at_load",
+				);
+				PRODUCT_NAME = BumpRace;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		CB06E928086BFC0F001241D7 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/SDL_image.framework/Headers,
+					/Library/Frameworks/SDL_mixer.framework/Headers,
+					/Library/Frameworks/SDL.framework/Headers,
+				);
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "-DSOUND";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SDL,
+					"-framework",
+					SDL_image,
+					"-framework",
+					SDL_mixer,
+					"-bind_at_load",
+				);
+				PRODUCT_NAME = BumpRace;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		CB06E929086BFC0F001241D7 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/SDL_image.framework/Headers,
+					/Library/Frameworks/SDL_mixer.framework/Headers,
+					/Library/Frameworks/SDL.framework/Headers,
+				);
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "-DSOUND";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SDL,
+					"-framework",
+					SDL_image,
+					"-framework",
+					SDL_mixer,
+					"-bind_at_load",
+				);
+				PRODUCT_NAME = BumpRace;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+		CB06E92B086BFC0F001241D7 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Development;
+		};
+		CB06E92C086BFC0F001241D7 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Deployment;
+		};
+		CB06E92D086BFC0F001241D7 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CB06E926086BFC0F001241D7 /* Build configuration list for PBXApplicationTarget "BumpRace" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB06E927086BFC0F001241D7 /* Development */,
+				CB06E928086BFC0F001241D7 /* Deployment */,
+				CB06E929086BFC0F001241D7 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		CB06E92A086BFC0F001241D7 /* Build configuration list for PBXProject "bumprace" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB06E92B086BFC0F001241D7 /* Development */,
+				CB06E92C086BFC0F001241D7 /* Deployment */,
+				CB06E92D086BFC0F001241D7 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
