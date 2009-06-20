@@ -970,19 +970,7 @@ void nextlevel() //selects the next level at random
     levels_completed++;
   } else {
     // reset all levels, if each level has been played one time
-    for (i=0;i<=NUMBER_OF_LEVELS[levelset];i++) {
-      int x,y;
-
-      finished[i]=0;
-      for (x=0; x<20; x++) {
-        for (y=0; y<15; y++) {
-	  if (levelset == 0)
-            map[i][y][x] = origMap[i][y][x];
-	  else 
-            map[i][y][x] = origMap2[i][y][x];
-        }
-      }
-    }
+    ResetLevels();
     quit=0;
     levelnum=abrand(0,NUMBER_OF_LEVELS[levelset]-1);
   }
@@ -1130,6 +1118,22 @@ void LoadSound()
 }
 #endif
 
+void ResetLevels() {
+	for (i=0;i<=NUMBER_OF_LEVELS[levelset];i++) {
+		int x,y;
+		
+		finished[i]=0;
+		for (x=0; x<20; x++) {
+			for (y=0; y<15; y++) {
+				if (levelset == 0)
+					map[i][y][x] = origMap[i][y][x];
+				else
+					map[i][y][x] = origMap2[i][y][x];
+			}
+		}
+	}
+}
+
 int main(int argc, char *argv[])
 {
 //intialisation
@@ -1171,23 +1175,11 @@ int main(int argc, char *argv[])
     SDL_Delay(3000);
     SDL_UpdateRect(Screen,50,380,700,90);
   }
-  for (i=0;i<=NUMBER_OF_LEVELS[levelset];i++) {
-    int x,y;
-    
-    finished[i]=0;
-    for (x=0; x<20; x++) {
-	for (y=0; y<15; y++) {
-	    if (levelset == 0)
-		map[i][y][x] = origMap[i][y][x];
-	    else
-		map[i][y][x] = origMap2[i][y][x];
-	}
-    }
-  }
   // select game mode
   Menu();
   while (mode!=3)
   {
+    ResetLevels();
     levelnum=abrand(0,NUMBER_OF_LEVELS[levelset]-1);
     sprintf(text,"BumpRace: Level #%d",levelnum);
     SDL_WM_SetCaption(text,"BumpRace");
@@ -1233,7 +1225,7 @@ int main(int argc, char *argv[])
         checks_common();
         timing();
         blit_lifetime();
-	Update();
+		Update();
       }
       //end of game loop
       if ((user[0].completed)||(user[playernum-1].completed))
