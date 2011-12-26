@@ -1123,7 +1123,9 @@ void LoadSound()
 	if (sound) {
 		sprintf(text,"%s/sound/lizard.mod",DATAPATH);
 		music = Mix_LoadMUS(text);
-		if (music==NULL) {printf("COULD NOT LOAD MUSIC\n");ComplainAndExit();}
+		if (music==NULL) {
+			printf("COULD NOT LOAD MUSIC\n");
+		}
 		sprintf(text,"%s/sound/%s",DATAPATH,"explode.wav");
 		explode_sound = Mix_LoadWAV_RW(SDL_RWFromFile(text, "rb"), 1);
 		sprintf(text,"%s/sound/%s",DATAPATH,"winlevel.wav");
