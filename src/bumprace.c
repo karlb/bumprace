@@ -884,9 +884,9 @@ void TextHelp(char *argv[])
     puts("  [-f | --fullscreen]         start in fullscreen mode (default)");
     puts("  [-w,| --windowed]           start in windowed mode");
     puts("  [-s,| --nosound]            start without sound");
-    puts("  [-n,| --notfinal]           no title screen (nice for develolopers)");
-    puts("  [-t,| --noparticles]        turns of paticles. good for slow computers.");
-    puts("  [-o,| --nofadeout]          no fadeout after crash (for slow coputers)");
+    puts("  [-n,| --notfinal]           no title screen (nice for developers)");
+    puts("  [-t,| --noparticles]        turns of particles. good for slow computers.");
+    puts("  [-o,| --nofadeout]          no fadeout after crash (for slow computers)");
     puts("  [     --precision]        	sets the precison of the collisions (default=10)");
     puts("  [-h,| --help]               this text\n");
     
@@ -1205,7 +1205,7 @@ int main(int argc, char *argv[])
         else break;
       }
     }
-    printf("** Racer selcted **\n");
+    printf("** Racer selected **\n");
     for (pl=0;pl<playernum;pl++) load_racer();  
     printf("** Racer data loaded **\n");
     // set racer abilities

@@ -33,8 +33,8 @@ Last Racer:  press control to stick to walls
 "--levelset 1"             selects an alternative, hard level set
 "--nofullscreen" "-f"      guess
 "--nosound"      "-s"      guess again
-"--notfinal"     "-n"      no title screen (nice for develolopers)
-"--noparticles"  "-t"      turns of paticles. good for slow computers.
+"--notfinal"     "-n"      no title screen (nice for developers)
+"--noparticles"  "-t"      turns off particles. good for slow computers.
 "--pageflip"     "-p"      flicker-free fullscreen, slow and extremly buggy
 "--precision [value]"      sets the precison of the collisions (default=10) 
                            using this is not recommended
