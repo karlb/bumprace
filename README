@@ -36,7 +36,7 @@ Last Racer:  press control to stick to walls
 "--notfinal"     "-n"      no title screen (nice for developers)
 "--noparticles"  "-t"      turns off particles. good for slow computers.
 "--pageflip"     "-p"      flicker-free fullscreen, slow and extremly buggy
-"--precision [value]"      sets the precison of the collisions (default=10) 
+"--precision [value]"      sets the precision of the collisions (default=10) 
                            using this is not recommended
 
 ---------------------------------< LICENSE >------------------------------------
