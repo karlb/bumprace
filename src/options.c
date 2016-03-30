@@ -26,7 +26,7 @@ FILE *OpenOptionsFile( char *mode )
 	    fprintf(stderr, "for write:");
 
 	fprintf(stderr, "\n%s\n"
-	    "The error that occured was:\n"
+	    "The error that occurred was:\n"
 	    "%s\n\n", filename, strerror(errno));
     }
     

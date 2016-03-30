@@ -887,7 +887,7 @@ void TextHelp(char *argv[])
     puts("  [-n,| --notfinal]           no title screen (nice for developers)");
     puts("  [-t,| --noparticles]        turns of particles. good for slow computers.");
     puts("  [-o,| --nofadeout]          no fadeout after crash (for slow computers)");
-    puts("  [     --precision]        	sets the precison of the collisions (default=10)");
+    puts("  [     --precision]        	sets the precision of the collisions (default=10)");
     puts("  [-h,| --help]               this text\n");
     
     exit(0);
