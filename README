@@ -3,9 +3,9 @@
 
 BumpRace is a simple arcade game. I'd like to receive a lot of comments and
 suggestions. You can get the newest version of BumpRace at:
-    http://members.linuxstart.com/~karlb/
+    http://www.linux-games.com/bumprace/
 And you can reach me via e-mail:
-    karlb@gmx.net
+    karl42@gmail.com
 	
 Keys:
 	PLAYER 1
@@ -18,8 +18,8 @@ Keys:
 	<w>				  thrust
 	<left control>			  special ability	
 
-To run this, you need the SDL-library. If you don't have it, get it from:
- http://www.devolution.com/~slouken/SDL/
+To run this, you need the SDL-library, which should be available for all linux distributions and on
+ http://www.libsdl.org/
 
 -----------------------------< RACER ABILITIES >--------------------------------
 
