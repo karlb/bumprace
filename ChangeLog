@@ -1,3 +1,10 @@
+Version 1.5.5
+ -updated autotools files
+ -updated README
+ -spelling corrections
+ -less compiler warnings
+ -reset levels to include time bonus when restarting game
+
 Version 1.5.3
  -fixed keyboard input after crash/timeout combination (thanks Bas Wijnen)
  -added more info to AUTHORS file
