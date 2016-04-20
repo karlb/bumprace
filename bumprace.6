@@ -1,233 +1,64 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
-<head>
-<title>collab-maint/bumprace - Packaging for bumprace</title>
-<meta name='generator' content='cgit v0.12'/>
-<meta name='robots' content='index, nofollow'/>
-<link rel='stylesheet' type='text/css' href='/cgit-css/cgit.css'/>
-<link rel='shortcut icon' href='/favicon.ico'/>
-<link rel='alternate' title='Atom feed' href='https://anonscm.debian.org/git/collab-maint/bumprace.git/atom/debian/bumprace.6?h=master' type='application/atom+xml'/>
-<link rel='vcs-git' href='https://anonscm.debian.org/git/collab-maint/bumprace.git' title='collab-maint/bumprace Git repository'/>
-<link rel='vcs-git' href='git://anonscm.debian.org/collab-maint/bumprace.git' title='collab-maint/bumprace Git repository'/>
-<link rel='vcs-git' href='ssh://git.debian.org/git/collab-maint/bumprace.git' title='collab-maint/bumprace Git repository'/>
-</head>
-<body>
-<div id='cgit'><table id='header'>
-<tr>
-<td class='logo' rowspan='2'><a href='/git/'><img src='https://anonscm.debian.org/alioth.png' alt='cgit logo'/></a></td>
-<td class='main'><a href='/git/'>index</a> : <a title='collab-maint/bumprace' href='/git/collab-maint/bumprace.git/'>collab-maint/bumprace</a></td><td class='form'><form method='get' action=''>
-<select name='h' onchange='this.form.submit();'>
-<option value='master' selected='selected'>master</option>
-</select> <input type='submit' name='' value='switch'/></form></td></tr>
-<tr><td class='sub'>Packaging for bumprace</td><td class='sub right'></td></tr></table>
-<table class='tabs'><tr><td>
-<a href='/git/collab-maint/bumprace.git/'>summary</a><a href='/git/collab-maint/bumprace.git/refs/'>refs</a><a href='/git/collab-maint/bumprace.git/log/debian/bumprace.6'>log</a><a class='active' href='/git/collab-maint/bumprace.git/tree/debian/bumprace.6'>tree</a><a href='/git/collab-maint/bumprace.git/commit/debian/bumprace.6'>commit</a><a href='/git/collab-maint/bumprace.git/diff/debian/bumprace.6'>diff</a></td><td class='form'><form class='right' method='get' action='/git/collab-maint/bumprace.git/log/debian/bumprace.6'>
-<select name='qt'>
-<option value='grep'>log msg</option>
-<option value='author'>author</option>
-<option value='committer'>committer</option>
-<option value='range'>range</option>
-</select>
-<input class='txt' type='text' size='10' name='q' value=''/>
-<input type='submit' value='search'/>
-</form>
-</td></tr></table>
-<div class='path'>path: <a href='/git/collab-maint/bumprace.git/tree/'>root</a>/<a href='/git/collab-maint/bumprace.git/tree/debian'>debian</a>/<a href='/git/collab-maint/bumprace.git/tree/debian/bumprace.6'>bumprace.6</a></div><div class='content'>blob: 9f1f976d156f78c3fd801f50e095da9329c8fa6e (<a href='/git/collab-maint/bumprace.git/plain/debian/bumprace.6'>plain</a>)
-<table summary='blob content' class='blob'>
-<tr><td class='linenumbers'><pre><a id='n1' href='#n1'>1</a>
-<a id='n2' href='#n2'>2</a>
-<a id='n3' href='#n3'>3</a>
-<a id='n4' href='#n4'>4</a>
-<a id='n5' href='#n5'>5</a>
-<a id='n6' href='#n6'>6</a>
-<a id='n7' href='#n7'>7</a>
-<a id='n8' href='#n8'>8</a>
-<a id='n9' href='#n9'>9</a>
-<a id='n10' href='#n10'>10</a>
-<a id='n11' href='#n11'>11</a>
-<a id='n12' href='#n12'>12</a>
-<a id='n13' href='#n13'>13</a>
-<a id='n14' href='#n14'>14</a>
-<a id='n15' href='#n15'>15</a>
-<a id='n16' href='#n16'>16</a>
-<a id='n17' href='#n17'>17</a>
-<a id='n18' href='#n18'>18</a>
-<a id='n19' href='#n19'>19</a>
-<a id='n20' href='#n20'>20</a>
-<a id='n21' href='#n21'>21</a>
-<a id='n22' href='#n22'>22</a>
-<a id='n23' href='#n23'>23</a>
-<a id='n24' href='#n24'>24</a>
-<a id='n25' href='#n25'>25</a>
-<a id='n26' href='#n26'>26</a>
-<a id='n27' href='#n27'>27</a>
-<a id='n28' href='#n28'>28</a>
-<a id='n29' href='#n29'>29</a>
-<a id='n30' href='#n30'>30</a>
-<a id='n31' href='#n31'>31</a>
-<a id='n32' href='#n32'>32</a>
-<a id='n33' href='#n33'>33</a>
-<a id='n34' href='#n34'>34</a>
-<a id='n35' href='#n35'>35</a>
-<a id='n36' href='#n36'>36</a>
-<a id='n37' href='#n37'>37</a>
-<a id='n38' href='#n38'>38</a>
-<a id='n39' href='#n39'>39</a>
-<a id='n40' href='#n40'>40</a>
-<a id='n41' href='#n41'>41</a>
-<a id='n42' href='#n42'>42</a>
-<a id='n43' href='#n43'>43</a>
-<a id='n44' href='#n44'>44</a>
-<a id='n45' href='#n45'>45</a>
-<a id='n46' href='#n46'>46</a>
-<a id='n47' href='#n47'>47</a>
-<a id='n48' href='#n48'>48</a>
-<a id='n49' href='#n49'>49</a>
-<a id='n50' href='#n50'>50</a>
-<a id='n51' href='#n51'>51</a>
-<a id='n52' href='#n52'>52</a>
-<a id='n53' href='#n53'>53</a>
-<a id='n54' href='#n54'>54</a>
-<a id='n55' href='#n55'>55</a>
-<a id='n56' href='#n56'>56</a>
-<a id='n57' href='#n57'>57</a>
-<a id='n58' href='#n58'>58</a>
-<a id='n59' href='#n59'>59</a>
-<a id='n60' href='#n60'>60</a>
-<a id='n61' href='#n61'>61</a>
-<a id='n62' href='#n62'>62</a>
-<a id='n63' href='#n63'>63</a>
-<a id='n64' href='#n64'>64</a>
-</pre></td>
-<td class='lines'><pre><code><style>.highlight .hll { background-color: #ffffcc }
-.highlight  { background: #ffffff; }
-.highlight .c { color: #888888 } /* Comment */
-.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
-.highlight .k { color: #008800; font-weight: bold } /* Keyword */
-.highlight .cm { color: #888888 } /* Comment.Multiline */
-.highlight .cp { color: #cc0000; font-weight: bold } /* Comment.Preproc */
-.highlight .c1 { color: #888888 } /* Comment.Single */
-.highlight .cs { color: #cc0000; font-weight: bold; background-color: #fff0f0 } /* Comment.Special */
-.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
-.highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #aa0000 } /* Generic.Error */
-.highlight .gh { color: #303030 } /* Generic.Heading */
-.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
-.highlight .gp { color: #555555 } /* Generic.Prompt */
-.highlight .gs { font-weight: bold } /* Generic.Strong */
-.highlight .gu { color: #606060 } /* Generic.Subheading */
-.highlight .gt { color: #aa0000 } /* Generic.Traceback */
-.highlight .kc { color: #008800; font-weight: bold } /* Keyword.Constant */
-.highlight .kd { color: #008800; font-weight: bold } /* Keyword.Declaration */
-.highlight .kn { color: #008800; font-weight: bold } /* Keyword.Namespace */
-.highlight .kp { color: #008800 } /* Keyword.Pseudo */
-.highlight .kr { color: #008800; font-weight: bold } /* Keyword.Reserved */
-.highlight .kt { color: #888888; font-weight: bold } /* Keyword.Type */
-.highlight .m { color: #0000DD; font-weight: bold } /* Literal.Number */
-.highlight .s { color: #dd2200; background-color: #fff0f0 } /* Literal.String */
-.highlight .na { color: #336699 } /* Name.Attribute */
-.highlight .nb { color: #003388 } /* Name.Builtin */
-.highlight .nc { color: #bb0066; font-weight: bold } /* Name.Class */
-.highlight .no { color: #003366; font-weight: bold } /* Name.Constant */
-.highlight .nd { color: #555555 } /* Name.Decorator */
-.highlight .ne { color: #bb0066; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #0066bb; font-weight: bold } /* Name.Function */
-.highlight .nl { color: #336699; font-style: italic } /* Name.Label */
-.highlight .nn { color: #bb0066; font-weight: bold } /* Name.Namespace */
-.highlight .py { color: #336699; font-weight: bold } /* Name.Property */
-.highlight .nt { color: #bb0066; font-weight: bold } /* Name.Tag */
-.highlight .nv { color: #336699 } /* Name.Variable */
-.highlight .ow { color: #008800 } /* Operator.Word */
-.highlight .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight .mf { color: #0000DD; font-weight: bold } /* Literal.Number.Float */
-.highlight .mh { color: #0000DD; font-weight: bold } /* Literal.Number.Hex */
-.highlight .mi { color: #0000DD; font-weight: bold } /* Literal.Number.Integer */
-.highlight .mo { color: #0000DD; font-weight: bold } /* Literal.Number.Oct */
-.highlight .sb { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Backtick */
-.highlight .sc { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Char */
-.highlight .sd { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Doc */
-.highlight .s2 { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Double */
-.highlight .se { color: #0044dd; background-color: #fff0f0 } /* Literal.String.Escape */
-.highlight .sh { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Heredoc */
-.highlight .si { color: #3333bb; background-color: #fff0f0 } /* Literal.String.Interpol */
-.highlight .sx { color: #22bb22; background-color: #f0fff0 } /* Literal.String.Other */
-.highlight .sr { color: #008800; background-color: #fff0ff } /* Literal.String.Regex */
-.highlight .s1 { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Single */
-.highlight .ss { color: #aa6600; background-color: #fff0f0 } /* Literal.String.Symbol */
-.highlight .bp { color: #003388 } /* Name.Builtin.Pseudo */
-.highlight .vc { color: #336699 } /* Name.Variable.Class */
-.highlight .vg { color: #dd7700 } /* Name.Variable.Global */
-.highlight .vi { color: #3333bb } /* Name.Variable.Instance */
-.highlight .il { color: #0000DD; font-weight: bold } /* Literal.Number.Integer.Long */</style><div class="highlight"><pre>.<span class="k">TH</span> <span class="s2">&quot;bumprace&quot;</span> <span class="s2">&quot;6&quot;</span> 
-<span class="s">.SH</span> <span class="s2">&quot;NAME&quot;</span> 
-<span class="s">bumprace</span> <span class="se">\(em</span> <span class="s">a</span> <span class="s">simple</span> <span class="s">arcade</span> <span class="s">game</span> 
-<span class="s">.SH</span> <span class="s2">&quot;SYNOPSIS&quot;</span> 
-<span class="s">.PP</span> 
-<span class="se">\fB</span><span class="s">bumprace\fR</span> <span class="s">[\fB-f</span> <span class="s">|</span> <span class="se">\-\-</span><span class="s">fullscreen\fP]</span>  <span class="s">[\fB-w</span> <span class="s">|</span> <span class="se">\-\-</span><span class="s">windowed\fP]</span>  <span class="s">[\fB-s</span> <span class="s">|</span> <span class="se">\-\-</span><span class="s">nosound\fP]</span>  <span class="s">[\fB-n</span> <span class="s">|</span> <span class="se">\-\-</span><span class="s">notfinal\fP]</span>  <span class="s">[\fB-t</span> <span class="s">|</span> <span class="se">\-\-</span><span class="s">noparticles\fP]</span>  <span class="s">[\fB-o</span> <span class="s">|</span> <span class="se">\-\-</span><span class="s">nofadeout\fP]</span>  <span class="s">[\fB\-\-precision\fP]</span>  <span class="s">[\fB-h</span> <span class="s">|</span> <span class="se">\-\-</span><span class="s">help\fP]</span>  
-<span class="s">.SH</span> <span class="s2">&quot;DESCRIPTION&quot;</span> 
-<span class="s">.PP</span> 
-<span class="s">This</span> <span class="s">manual</span> <span class="s">page</span> <span class="s">documents</span> <span class="s">briefly</span> <span class="s">the</span> 
-<span class="se">\fB</span><span class="s">bumprace\fR</span> <span class="s">command.</span> 
-<span class="s">.PP</span> 
-<span class="s">This</span> <span class="s">manual</span> <span class="s">page</span> <span class="s">was</span> <span class="s">written</span> <span class="s">for</span> <span class="s">the</span> <span class="se">\fB</span><span class="s">Debian</span> <span class="s">GNU/Linux\fP</span> <span class="s">distribution</span> 
-<span class="s">because</span> <span class="s">the</span> <span class="s">original</span> <span class="s">program</span> <span class="s">does</span> <span class="s">not</span> <span class="s">have</span> <span class="s">a</span> <span class="s">manual</span> <span class="s">page.</span> 
-<span class="s">Instead,</span> <span class="s">it</span> <span class="s">has</span> <span class="s">documentation</span> <span class="s">in</span> <span class="s">/usr/share/doc/bumprace/README.</span> 
-<span class="s">.PP</span> 
-<span class="se">\fB</span><span class="s">bumprace\fR</span> <span class="s">a</span> <span class="s">simple</span> <span class="s">arcade</span> <span class="s">game.</span> 
-<span class="s">.SH</span> <span class="s2">&quot;OPTIONS&quot;</span> 
-<span class="s">.PP</span> 
-<span class="s">This</span> <span class="s">program</span> <span class="s">follows</span> <span class="s">the</span> <span class="s">usual</span> <span class="s">GNU</span> <span class="s">command</span> <span class="s">line</span> <span class="s">syntax,</span> 
-<span class="s">with</span> <span class="s">long</span> <span class="s">options</span> <span class="s">starting</span> <span class="s">with</span> <span class="s">two</span> <span class="s">dashes</span> <span class="s">(`\-&#39;).</span>  <span class="s">A</span> <span class="s">summary</span> <span class="s">of</span> 
-<span class="s">options</span> <span class="s">is</span> <span class="s">included</span> <span class="s">below.</span> 
-<span class="s">.IP</span> <span class="s2">&quot;\fB-f\fP           \fB\-\-fullscreen\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">Start</span> <span class="s">in</span> <span class="s">fullscreen</span> <span class="s">mode</span> <span class="s">(default).</span> 
-<span class="s">.IP</span> <span class="s2">&quot;\fB-w\fP           \fB\-\-windowed\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">Start</span> <span class="s">in</span> <span class="s">windowed</span> <span class="s">mode.</span> 
-<span class="s">.IP</span> <span class="s2">&quot;\fB-s\fP           \fB\-\-nosound\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">Start</span> <span class="s">without</span> <span class="s">sound.</span> 
-<span class="s">.IP</span> <span class="s2">&quot;\fB-n\fP           \fB\-\-notfinal\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">No</span> <span class="s">title</span> <span class="s">screen</span> <span class="s">(nice</span> <span class="s">for</span> <span class="s">developers).</span> 
-<span class="s">.IP</span> <span class="s2">&quot;\fB-t\fP           \fB\-\-noparticles\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">Turns</span> <span class="s">off</span> <span class="s">particles.</span> <span class="s">Good</span> <span class="s">for</span> <span class="s">slow</span> <span class="s">computers.</span> 
-<span class="s">.IP</span> <span class="s2">&quot;\fB-o\fP           \fB\-\-nofadeout\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">No</span> <span class="s">fadeout</span> <span class="s">after</span> <span class="s">crash</span> <span class="s">(for</span> <span class="s">slow</span> <span class="s">computers).</span> 
-<span class="s">.IP</span> <span class="s2">&quot;          \fB\-\-precision\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">Sets</span> <span class="s">the</span> <span class="s">precision</span> <span class="s">of</span> <span class="s">the</span> <span class="s">collisions</span> <span class="s">(default=10).</span> 
-<span class="s">.IP</span> <span class="s2">&quot;\fB-h\fP           \fB\-\-help\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">Show</span> <span class="s">summary</span> <span class="s">of</span> <span class="s">options.</span> 
-<span class="s">.SH</span> <span class="s2">&quot;KEYS&quot;</span> 
-<span class="s">.PP</span> 
-<span class="s">Player</span> <span class="m">1</span> 
-<span class="s">.IP</span> <span class="s2">&quot;\fBarrow keys\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">moving</span> 
-<span class="s">.IP</span> <span class="s2">&quot;\fBright control\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">special</span> <span class="s">ability</span> 
-<span class="s">.PP</span> 
-<span class="s">Player</span> <span class="m">2</span> 
-<span class="s">.IP</span> <span class="s2">&quot;\fBa\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">left</span> 
-<span class="s">.IP</span> <span class="s2">&quot;\fBd\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">right</span> 
-<span class="s">.IP</span> <span class="s2">&quot;\fBw\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">thrust</span> 
-<span class="s">.IP</span> <span class="s2">&quot;\fBTAB\fP         &quot;</span> <span class="m">10</span> 
-<span class="s">special</span> <span class="s">ability</span> 
-<span class="s">.SH</span> <span class="s2">&quot;AUTHOR&quot;</span> 
-<span class="s">.PP</span> 
-<span class="s">This</span> <span class="s">manual</span> <span class="s">page</span> <span class="s">was</span> <span class="s">written</span> <span class="s">by</span> <span class="s">Christian</span> <span class="s">T.</span> <span class="s">Steigies</span> <span class="s">&lt;cts@debian.org&gt;</span> <span class="s">for</span> 
-<span class="s">the</span> <span class="se">\fB</span><span class="s">Debian</span> <span class="s">GNU/Linux\fP</span> <span class="s">system</span> <span class="s">(but</span> <span class="s">may</span> <span class="s">be</span> <span class="s">used</span> <span class="s">by</span> <span class="s">others).</span>  <span class="s">Permission</span> <span class="s">is</span> 
-<span class="s">granted</span> <span class="s">to</span> <span class="s">copy,</span> <span class="s">distribute</span> <span class="s">and/or</span> <span class="s">modify</span> <span class="s">this</span> <span class="s">document</span> <span class="s">under</span> 
-<span class="s">the</span> <span class="s">terms</span> <span class="s">of</span> <span class="s">the</span> <span class="s">GNU</span> <span class="s">Free</span> <span class="s">Documentation</span> 
-<span class="s">License,</span> <span class="s">Version</span> <span class="m">1</span><span class="s">.1</span> <span class="s">or</span> <span class="s">any</span> <span class="s">later</span> <span class="s">version</span> <span class="s">published</span> <span class="s">by</span> <span class="s">the</span> <span class="s">Free</span> 
-<span class="s">Software</span> <span class="s">Foundation;</span> <span class="s">with</span> <span class="s">no</span> <span class="s">Invariant</span> <span class="s">Sections,</span> <span class="s">no</span> <span class="s">Front-Cover</span> 
-<span class="s">Texts</span> <span class="s">and</span> <span class="s">no</span> <span class="s">Back-Cover</span> <span class="s">Texts.</span> 
-<span class="s">.\&quot;</span> <span class="s">created</span> <span class="s">by</span> <span class="s">instant</span> <span class="s">/</span> <span class="s">docbook-to-man</span> 
-</pre></div>
-</code></pre></td></tr></table>
-</div> <!-- class=content -->
-<div class='footer'>generated by <a href='http://git.zx2c4.com/cgit/about/'>cgit v0.12</a> at 2016-04-17 08:20:33 (GMT)</div>
-</div> <!-- id=cgit -->
-</body>
-</html>
+.TH "bumprace" "6" 
+.SH "NAME" 
+bumprace \(em a simple arcade game 
+.SH "SYNOPSIS" 
+.PP 
+\fBbumprace\fR [\fB-f | \-\-fullscreen\fP]  [\fB-w | \-\-windowed\fP]  [\fB-s | \-\-nosound\fP]  [\fB-n | \-\-notfinal\fP]  [\fB-t | \-\-noparticles\fP]  [\fB-o | \-\-nofadeout\fP]  [\fB\-\-precision\fP]  [\fB-h | \-\-help\fP]  
+.SH "DESCRIPTION" 
+.PP 
+This manual page documents briefly the 
+\fBbumprace\fR command. 
+.PP 
+This manual page was written for the \fBDebian GNU/Linux\fP distribution 
+because the original program does not have a manual page. 
+Instead, it has documentation in /usr/share/doc/bumprace/README. 
+.PP 
+\fBbumprace\fR a simple arcade game. 
+.SH "OPTIONS" 
+.PP 
+This program follows the usual GNU command line syntax, 
+with long options starting with two dashes (`\-').  A summary of 
+options is included below. 
+.IP "\fB-f\fP           \fB\-\-fullscreen\fP         " 10 
+Start in fullscreen mode (default). 
+.IP "\fB-w\fP           \fB\-\-windowed\fP         " 10 
+Start in windowed mode. 
+.IP "\fB-s\fP           \fB\-\-nosound\fP         " 10 
+Start without sound. 
+.IP "\fB-n\fP           \fB\-\-notfinal\fP         " 10 
+No title screen (nice for developers). 
+.IP "\fB-t\fP           \fB\-\-noparticles\fP         " 10 
+Turns off particles. Good for slow computers. 
+.IP "\fB-o\fP           \fB\-\-nofadeout\fP         " 10 
+No fadeout after crash (for slow computers). 
+.IP "          \fB\-\-precision\fP         " 10 
+Sets the precision of the collisions (default=10). 
+.IP "\fB-h\fP           \fB\-\-help\fP         " 10 
+Show summary of options. 
+.SH "KEYS" 
+.PP 
+Player 1 
+.IP "\fBarrow keys\fP         " 10 
+moving 
+.IP "\fBright control\fP         " 10 
+special ability 
+.PP 
+Player 2 
+.IP "\fBa\fP         " 10 
+left 
+.IP "\fBd\fP         " 10 
+right 
+.IP "\fBw\fP         " 10 
+thrust 
+.IP "\fBTAB\fP         " 10 
+special ability 
+.SH "AUTHOR" 
+.PP 
+This manual page was written by Christian T. Steigies <cts@debian.org> for 
+the \fBDebian GNU/Linux\fP system (but may be used by others).  Permission is 
+granted to copy, distribute and/or modify this document under 
+the terms of the GNU Free Documentation 
+License, Version 1.1 or any later version published by the Free 
+Software Foundation; with no Invariant Sections, no Front-Cover 
+Texts and no Back-Cover Texts. 
+.\" created by instant / docbook-to-man 
