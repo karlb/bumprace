@@ -1,628 +1,259 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
-<head>
-<title>collab-maint/bumprace - Packaging for bumprace</title>
-<meta name='generator' content='cgit v0.12'/>
-<meta name='robots' content='index, nofollow'/>
-<link rel='stylesheet' type='text/css' href='/cgit-css/cgit.css'/>
-<link rel='shortcut icon' href='/favicon.ico'/>
-<link rel='alternate' title='Atom feed' href='https://anonscm.debian.org/git/collab-maint/bumprace.git/atom/debian/bumprace.sgml?h=master' type='application/atom+xml'/>
-<link rel='vcs-git' href='https://anonscm.debian.org/git/collab-maint/bumprace.git' title='collab-maint/bumprace Git repository'/>
-<link rel='vcs-git' href='git://anonscm.debian.org/collab-maint/bumprace.git' title='collab-maint/bumprace Git repository'/>
-<link rel='vcs-git' href='ssh://git.debian.org/git/collab-maint/bumprace.git' title='collab-maint/bumprace Git repository'/>
-</head>
-<body>
-<div id='cgit'><table id='header'>
-<tr>
-<td class='logo' rowspan='2'><a href='/git/'><img src='https://anonscm.debian.org/alioth.png' alt='cgit logo'/></a></td>
-<td class='main'><a href='/git/'>index</a> : <a title='collab-maint/bumprace' href='/git/collab-maint/bumprace.git/'>collab-maint/bumprace</a></td><td class='form'><form method='get' action=''>
-<select name='h' onchange='this.form.submit();'>
-<option value='master' selected='selected'>master</option>
-</select> <input type='submit' name='' value='switch'/></form></td></tr>
-<tr><td class='sub'>Packaging for bumprace</td><td class='sub right'></td></tr></table>
-<table class='tabs'><tr><td>
-<a href='/git/collab-maint/bumprace.git/'>summary</a><a href='/git/collab-maint/bumprace.git/refs/'>refs</a><a href='/git/collab-maint/bumprace.git/log/debian/bumprace.sgml'>log</a><a class='active' href='/git/collab-maint/bumprace.git/tree/debian/bumprace.sgml'>tree</a><a href='/git/collab-maint/bumprace.git/commit/debian/bumprace.sgml'>commit</a><a href='/git/collab-maint/bumprace.git/diff/debian/bumprace.sgml'>diff</a></td><td class='form'><form class='right' method='get' action='/git/collab-maint/bumprace.git/log/debian/bumprace.sgml'>
-<select name='qt'>
-<option value='grep'>log msg</option>
-<option value='author'>author</option>
-<option value='committer'>committer</option>
-<option value='range'>range</option>
-</select>
-<input class='txt' type='text' size='10' name='q' value=''/>
-<input type='submit' value='search'/>
-</form>
-</td></tr></table>
-<div class='path'>path: <a href='/git/collab-maint/bumprace.git/tree/'>root</a>/<a href='/git/collab-maint/bumprace.git/tree/debian'>debian</a>/<a href='/git/collab-maint/bumprace.git/tree/debian/bumprace.sgml'>bumprace.sgml</a></div><div class='content'>blob: a4339b85da51a93cbe017e85c5caa0d8a8fb9cce (<a href='/git/collab-maint/bumprace.git/plain/debian/bumprace.sgml'>plain</a>)
-<table summary='blob content' class='blob'>
-<tr><td class='linenumbers'><pre><a id='n1' href='#n1'>1</a>
-<a id='n2' href='#n2'>2</a>
-<a id='n3' href='#n3'>3</a>
-<a id='n4' href='#n4'>4</a>
-<a id='n5' href='#n5'>5</a>
-<a id='n6' href='#n6'>6</a>
-<a id='n7' href='#n7'>7</a>
-<a id='n8' href='#n8'>8</a>
-<a id='n9' href='#n9'>9</a>
-<a id='n10' href='#n10'>10</a>
-<a id='n11' href='#n11'>11</a>
-<a id='n12' href='#n12'>12</a>
-<a id='n13' href='#n13'>13</a>
-<a id='n14' href='#n14'>14</a>
-<a id='n15' href='#n15'>15</a>
-<a id='n16' href='#n16'>16</a>
-<a id='n17' href='#n17'>17</a>
-<a id='n18' href='#n18'>18</a>
-<a id='n19' href='#n19'>19</a>
-<a id='n20' href='#n20'>20</a>
-<a id='n21' href='#n21'>21</a>
-<a id='n22' href='#n22'>22</a>
-<a id='n23' href='#n23'>23</a>
-<a id='n24' href='#n24'>24</a>
-<a id='n25' href='#n25'>25</a>
-<a id='n26' href='#n26'>26</a>
-<a id='n27' href='#n27'>27</a>
-<a id='n28' href='#n28'>28</a>
-<a id='n29' href='#n29'>29</a>
-<a id='n30' href='#n30'>30</a>
-<a id='n31' href='#n31'>31</a>
-<a id='n32' href='#n32'>32</a>
-<a id='n33' href='#n33'>33</a>
-<a id='n34' href='#n34'>34</a>
-<a id='n35' href='#n35'>35</a>
-<a id='n36' href='#n36'>36</a>
-<a id='n37' href='#n37'>37</a>
-<a id='n38' href='#n38'>38</a>
-<a id='n39' href='#n39'>39</a>
-<a id='n40' href='#n40'>40</a>
-<a id='n41' href='#n41'>41</a>
-<a id='n42' href='#n42'>42</a>
-<a id='n43' href='#n43'>43</a>
-<a id='n44' href='#n44'>44</a>
-<a id='n45' href='#n45'>45</a>
-<a id='n46' href='#n46'>46</a>
-<a id='n47' href='#n47'>47</a>
-<a id='n48' href='#n48'>48</a>
-<a id='n49' href='#n49'>49</a>
-<a id='n50' href='#n50'>50</a>
-<a id='n51' href='#n51'>51</a>
-<a id='n52' href='#n52'>52</a>
-<a id='n53' href='#n53'>53</a>
-<a id='n54' href='#n54'>54</a>
-<a id='n55' href='#n55'>55</a>
-<a id='n56' href='#n56'>56</a>
-<a id='n57' href='#n57'>57</a>
-<a id='n58' href='#n58'>58</a>
-<a id='n59' href='#n59'>59</a>
-<a id='n60' href='#n60'>60</a>
-<a id='n61' href='#n61'>61</a>
-<a id='n62' href='#n62'>62</a>
-<a id='n63' href='#n63'>63</a>
-<a id='n64' href='#n64'>64</a>
-<a id='n65' href='#n65'>65</a>
-<a id='n66' href='#n66'>66</a>
-<a id='n67' href='#n67'>67</a>
-<a id='n68' href='#n68'>68</a>
-<a id='n69' href='#n69'>69</a>
-<a id='n70' href='#n70'>70</a>
-<a id='n71' href='#n71'>71</a>
-<a id='n72' href='#n72'>72</a>
-<a id='n73' href='#n73'>73</a>
-<a id='n74' href='#n74'>74</a>
-<a id='n75' href='#n75'>75</a>
-<a id='n76' href='#n76'>76</a>
-<a id='n77' href='#n77'>77</a>
-<a id='n78' href='#n78'>78</a>
-<a id='n79' href='#n79'>79</a>
-<a id='n80' href='#n80'>80</a>
-<a id='n81' href='#n81'>81</a>
-<a id='n82' href='#n82'>82</a>
-<a id='n83' href='#n83'>83</a>
-<a id='n84' href='#n84'>84</a>
-<a id='n85' href='#n85'>85</a>
-<a id='n86' href='#n86'>86</a>
-<a id='n87' href='#n87'>87</a>
-<a id='n88' href='#n88'>88</a>
-<a id='n89' href='#n89'>89</a>
-<a id='n90' href='#n90'>90</a>
-<a id='n91' href='#n91'>91</a>
-<a id='n92' href='#n92'>92</a>
-<a id='n93' href='#n93'>93</a>
-<a id='n94' href='#n94'>94</a>
-<a id='n95' href='#n95'>95</a>
-<a id='n96' href='#n96'>96</a>
-<a id='n97' href='#n97'>97</a>
-<a id='n98' href='#n98'>98</a>
-<a id='n99' href='#n99'>99</a>
-<a id='n100' href='#n100'>100</a>
-<a id='n101' href='#n101'>101</a>
-<a id='n102' href='#n102'>102</a>
-<a id='n103' href='#n103'>103</a>
-<a id='n104' href='#n104'>104</a>
-<a id='n105' href='#n105'>105</a>
-<a id='n106' href='#n106'>106</a>
-<a id='n107' href='#n107'>107</a>
-<a id='n108' href='#n108'>108</a>
-<a id='n109' href='#n109'>109</a>
-<a id='n110' href='#n110'>110</a>
-<a id='n111' href='#n111'>111</a>
-<a id='n112' href='#n112'>112</a>
-<a id='n113' href='#n113'>113</a>
-<a id='n114' href='#n114'>114</a>
-<a id='n115' href='#n115'>115</a>
-<a id='n116' href='#n116'>116</a>
-<a id='n117' href='#n117'>117</a>
-<a id='n118' href='#n118'>118</a>
-<a id='n119' href='#n119'>119</a>
-<a id='n120' href='#n120'>120</a>
-<a id='n121' href='#n121'>121</a>
-<a id='n122' href='#n122'>122</a>
-<a id='n123' href='#n123'>123</a>
-<a id='n124' href='#n124'>124</a>
-<a id='n125' href='#n125'>125</a>
-<a id='n126' href='#n126'>126</a>
-<a id='n127' href='#n127'>127</a>
-<a id='n128' href='#n128'>128</a>
-<a id='n129' href='#n129'>129</a>
-<a id='n130' href='#n130'>130</a>
-<a id='n131' href='#n131'>131</a>
-<a id='n132' href='#n132'>132</a>
-<a id='n133' href='#n133'>133</a>
-<a id='n134' href='#n134'>134</a>
-<a id='n135' href='#n135'>135</a>
-<a id='n136' href='#n136'>136</a>
-<a id='n137' href='#n137'>137</a>
-<a id='n138' href='#n138'>138</a>
-<a id='n139' href='#n139'>139</a>
-<a id='n140' href='#n140'>140</a>
-<a id='n141' href='#n141'>141</a>
-<a id='n142' href='#n142'>142</a>
-<a id='n143' href='#n143'>143</a>
-<a id='n144' href='#n144'>144</a>
-<a id='n145' href='#n145'>145</a>
-<a id='n146' href='#n146'>146</a>
-<a id='n147' href='#n147'>147</a>
-<a id='n148' href='#n148'>148</a>
-<a id='n149' href='#n149'>149</a>
-<a id='n150' href='#n150'>150</a>
-<a id='n151' href='#n151'>151</a>
-<a id='n152' href='#n152'>152</a>
-<a id='n153' href='#n153'>153</a>
-<a id='n154' href='#n154'>154</a>
-<a id='n155' href='#n155'>155</a>
-<a id='n156' href='#n156'>156</a>
-<a id='n157' href='#n157'>157</a>
-<a id='n158' href='#n158'>158</a>
-<a id='n159' href='#n159'>159</a>
-<a id='n160' href='#n160'>160</a>
-<a id='n161' href='#n161'>161</a>
-<a id='n162' href='#n162'>162</a>
-<a id='n163' href='#n163'>163</a>
-<a id='n164' href='#n164'>164</a>
-<a id='n165' href='#n165'>165</a>
-<a id='n166' href='#n166'>166</a>
-<a id='n167' href='#n167'>167</a>
-<a id='n168' href='#n168'>168</a>
-<a id='n169' href='#n169'>169</a>
-<a id='n170' href='#n170'>170</a>
-<a id='n171' href='#n171'>171</a>
-<a id='n172' href='#n172'>172</a>
-<a id='n173' href='#n173'>173</a>
-<a id='n174' href='#n174'>174</a>
-<a id='n175' href='#n175'>175</a>
-<a id='n176' href='#n176'>176</a>
-<a id='n177' href='#n177'>177</a>
-<a id='n178' href='#n178'>178</a>
-<a id='n179' href='#n179'>179</a>
-<a id='n180' href='#n180'>180</a>
-<a id='n181' href='#n181'>181</a>
-<a id='n182' href='#n182'>182</a>
-<a id='n183' href='#n183'>183</a>
-<a id='n184' href='#n184'>184</a>
-<a id='n185' href='#n185'>185</a>
-<a id='n186' href='#n186'>186</a>
-<a id='n187' href='#n187'>187</a>
-<a id='n188' href='#n188'>188</a>
-<a id='n189' href='#n189'>189</a>
-<a id='n190' href='#n190'>190</a>
-<a id='n191' href='#n191'>191</a>
-<a id='n192' href='#n192'>192</a>
-<a id='n193' href='#n193'>193</a>
-<a id='n194' href='#n194'>194</a>
-<a id='n195' href='#n195'>195</a>
-<a id='n196' href='#n196'>196</a>
-<a id='n197' href='#n197'>197</a>
-<a id='n198' href='#n198'>198</a>
-<a id='n199' href='#n199'>199</a>
-<a id='n200' href='#n200'>200</a>
-<a id='n201' href='#n201'>201</a>
-<a id='n202' href='#n202'>202</a>
-<a id='n203' href='#n203'>203</a>
-<a id='n204' href='#n204'>204</a>
-<a id='n205' href='#n205'>205</a>
-<a id='n206' href='#n206'>206</a>
-<a id='n207' href='#n207'>207</a>
-<a id='n208' href='#n208'>208</a>
-<a id='n209' href='#n209'>209</a>
-<a id='n210' href='#n210'>210</a>
-<a id='n211' href='#n211'>211</a>
-<a id='n212' href='#n212'>212</a>
-<a id='n213' href='#n213'>213</a>
-<a id='n214' href='#n214'>214</a>
-<a id='n215' href='#n215'>215</a>
-<a id='n216' href='#n216'>216</a>
-<a id='n217' href='#n217'>217</a>
-<a id='n218' href='#n218'>218</a>
-<a id='n219' href='#n219'>219</a>
-<a id='n220' href='#n220'>220</a>
-<a id='n221' href='#n221'>221</a>
-<a id='n222' href='#n222'>222</a>
-<a id='n223' href='#n223'>223</a>
-<a id='n224' href='#n224'>224</a>
-<a id='n225' href='#n225'>225</a>
-<a id='n226' href='#n226'>226</a>
-<a id='n227' href='#n227'>227</a>
-<a id='n228' href='#n228'>228</a>
-<a id='n229' href='#n229'>229</a>
-<a id='n230' href='#n230'>230</a>
-<a id='n231' href='#n231'>231</a>
-<a id='n232' href='#n232'>232</a>
-<a id='n233' href='#n233'>233</a>
-<a id='n234' href='#n234'>234</a>
-<a id='n235' href='#n235'>235</a>
-<a id='n236' href='#n236'>236</a>
-<a id='n237' href='#n237'>237</a>
-<a id='n238' href='#n238'>238</a>
-<a id='n239' href='#n239'>239</a>
-<a id='n240' href='#n240'>240</a>
-<a id='n241' href='#n241'>241</a>
-<a id='n242' href='#n242'>242</a>
-<a id='n243' href='#n243'>243</a>
-<a id='n244' href='#n244'>244</a>
-<a id='n245' href='#n245'>245</a>
-<a id='n246' href='#n246'>246</a>
-<a id='n247' href='#n247'>247</a>
-<a id='n248' href='#n248'>248</a>
-<a id='n249' href='#n249'>249</a>
-<a id='n250' href='#n250'>250</a>
-<a id='n251' href='#n251'>251</a>
-<a id='n252' href='#n252'>252</a>
-<a id='n253' href='#n253'>253</a>
-<a id='n254' href='#n254'>254</a>
-<a id='n255' href='#n255'>255</a>
-<a id='n256' href='#n256'>256</a>
-<a id='n257' href='#n257'>257</a>
-<a id='n258' href='#n258'>258</a>
-<a id='n259' href='#n259'>259</a>
-<a id='n260' href='#n260'>260</a>
-<a id='n261' href='#n261'>261</a>
-<a id='n262' href='#n262'>262</a>
-<a id='n263' href='#n263'>263</a>
-<a id='n264' href='#n264'>264</a>
-<a id='n265' href='#n265'>265</a>
-<a id='n266' href='#n266'>266</a>
-<a id='n267' href='#n267'>267</a>
-<a id='n268' href='#n268'>268</a>
-<a id='n269' href='#n269'>269</a>
-<a id='n270' href='#n270'>270</a>
-<a id='n271' href='#n271'>271</a>
-</pre></td>
-<td class='lines'><pre><code><style>.highlight .hll { background-color: #ffffcc }
-.highlight  { background: #ffffff; }
-.highlight .c { color: #888888 } /* Comment */
-.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
-.highlight .k { color: #008800; font-weight: bold } /* Keyword */
-.highlight .cm { color: #888888 } /* Comment.Multiline */
-.highlight .cp { color: #cc0000; font-weight: bold } /* Comment.Preproc */
-.highlight .c1 { color: #888888 } /* Comment.Single */
-.highlight .cs { color: #cc0000; font-weight: bold; background-color: #fff0f0 } /* Comment.Special */
-.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
-.highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #aa0000 } /* Generic.Error */
-.highlight .gh { color: #303030 } /* Generic.Heading */
-.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
-.highlight .gp { color: #555555 } /* Generic.Prompt */
-.highlight .gs { font-weight: bold } /* Generic.Strong */
-.highlight .gu { color: #606060 } /* Generic.Subheading */
-.highlight .gt { color: #aa0000 } /* Generic.Traceback */
-.highlight .kc { color: #008800; font-weight: bold } /* Keyword.Constant */
-.highlight .kd { color: #008800; font-weight: bold } /* Keyword.Declaration */
-.highlight .kn { color: #008800; font-weight: bold } /* Keyword.Namespace */
-.highlight .kp { color: #008800 } /* Keyword.Pseudo */
-.highlight .kr { color: #008800; font-weight: bold } /* Keyword.Reserved */
-.highlight .kt { color: #888888; font-weight: bold } /* Keyword.Type */
-.highlight .m { color: #0000DD; font-weight: bold } /* Literal.Number */
-.highlight .s { color: #dd2200; background-color: #fff0f0 } /* Literal.String */
-.highlight .na { color: #336699 } /* Name.Attribute */
-.highlight .nb { color: #003388 } /* Name.Builtin */
-.highlight .nc { color: #bb0066; font-weight: bold } /* Name.Class */
-.highlight .no { color: #003366; font-weight: bold } /* Name.Constant */
-.highlight .nd { color: #555555 } /* Name.Decorator */
-.highlight .ne { color: #bb0066; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #0066bb; font-weight: bold } /* Name.Function */
-.highlight .nl { color: #336699; font-style: italic } /* Name.Label */
-.highlight .nn { color: #bb0066; font-weight: bold } /* Name.Namespace */
-.highlight .py { color: #336699; font-weight: bold } /* Name.Property */
-.highlight .nt { color: #bb0066; font-weight: bold } /* Name.Tag */
-.highlight .nv { color: #336699 } /* Name.Variable */
-.highlight .ow { color: #008800 } /* Operator.Word */
-.highlight .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight .mf { color: #0000DD; font-weight: bold } /* Literal.Number.Float */
-.highlight .mh { color: #0000DD; font-weight: bold } /* Literal.Number.Hex */
-.highlight .mi { color: #0000DD; font-weight: bold } /* Literal.Number.Integer */
-.highlight .mo { color: #0000DD; font-weight: bold } /* Literal.Number.Oct */
-.highlight .sb { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Backtick */
-.highlight .sc { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Char */
-.highlight .sd { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Doc */
-.highlight .s2 { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Double */
-.highlight .se { color: #0044dd; background-color: #fff0f0 } /* Literal.String.Escape */
-.highlight .sh { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Heredoc */
-.highlight .si { color: #3333bb; background-color: #fff0f0 } /* Literal.String.Interpol */
-.highlight .sx { color: #22bb22; background-color: #f0fff0 } /* Literal.String.Other */
-.highlight .sr { color: #008800; background-color: #fff0ff } /* Literal.String.Regex */
-.highlight .s1 { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Single */
-.highlight .ss { color: #aa6600; background-color: #fff0f0 } /* Literal.String.Symbol */
-.highlight .bp { color: #003388 } /* Name.Builtin.Pseudo */
-.highlight .vc { color: #336699 } /* Name.Variable.Class */
-.highlight .vg { color: #dd7700 } /* Name.Variable.Global */
-.highlight .vi { color: #3333bb } /* Name.Variable.Instance */
-.highlight .il { color: #0000DD; font-weight: bold } /* Literal.Number.Integer.Long */</style><div class="highlight"><pre>&lt;!doctype refentry PUBLIC &quot;-//OASIS//DTD DocBook V4.1//EN&quot; [
+<!doctype refentry PUBLIC "-//OASIS//DTD DocBook V4.1//EN" [
 
-&lt;!-- Process this file with docbook-to-man to generate an nroff manual
-     page: `docbook-to-man manpage.sgml &gt; manpage.1&#39;.  You may view
+<!-- Process this file with docbook-to-man to generate an nroff manual
+     page: `docbook-to-man manpage.sgml > manpage.1'.  You may view
      the manual page with: `docbook-to-man manpage.sgml | nroff -man |
-     less&#39;.  A typical entry in a Makefile or Makefile.am is:
+     less'.  A typical entry in a Makefile or Makefile.am is:
 
 manpage.1: manpage.sgml
-	docbook-to-man $&lt; &gt; $@
-  --&gt;
+	docbook-to-man $< > $@
+  -->
 
-  &lt;!-- Fill in your name for FIRSTNAME and SURNAME. --&gt;
-  &lt;!ENTITY dhfirstname &quot;&lt;firstname&gt;Christian T.&lt;/firstname&gt;&quot;&gt;
-  &lt;!ENTITY dhsurname   &quot;&lt;surname&gt;Steigies&lt;/surname&gt;&quot;&gt;
-  &lt;!-- Please adjust the date whenever revising the manpage. --&gt;
-  &lt;!ENTITY dhdate      &quot;&lt;date&gt;2002-01-08&lt;/date&gt;&quot;&gt;
-  &lt;!-- SECTION should be 1-8, maybe w/ subsection other parameters are
-       allowed: see man(7), man(1). --&gt;
-  &lt;!ENTITY dhsection   &quot;&lt;manvolnum&gt;6&lt;/manvolnum&gt;&quot;&gt;
-  &lt;!ENTITY dhemail     &quot;&lt;email&gt;cts@debian.org&lt;/email&gt;&quot;&gt;
-  &lt;!ENTITY dhusername  &quot;Christian T. Steigies&quot;&gt;
-  &lt;!ENTITY dhucpackage &quot;&lt;refentrytitle&gt;bumprace&lt;/refentrytitle&gt;&quot;&gt;
-  &lt;!ENTITY dhpackage   &quot;bumprace&quot;&gt;
+  <!-- Fill in your name for FIRSTNAME and SURNAME. -->
+  <!ENTITY dhfirstname "<firstname>Christian T.</firstname>">
+  <!ENTITY dhsurname   "<surname>Steigies</surname>">
+  <!-- Please adjust the date whenever revising the manpage. -->
+  <!ENTITY dhdate      "<date>2002-01-08</date>">
+  <!-- SECTION should be 1-8, maybe w/ subsection other parameters are
+       allowed: see man(7), man(1). -->
+  <!ENTITY dhsection   "<manvolnum>6</manvolnum>">
+  <!ENTITY dhemail     "<email>cts@debian.org</email>">
+  <!ENTITY dhusername  "Christian T. Steigies">
+  <!ENTITY dhucpackage "<refentrytitle>bumprace</refentrytitle>">
+  <!ENTITY dhpackage   "bumprace">
 
-  &lt;!ENTITY debian      &quot;&lt;productname&gt;Debian GNU/Linux&lt;/productname&gt;&quot;&gt;
-  &lt;!ENTITY gnu         &quot;&lt;acronym&gt;GNU&lt;/acronym&gt;&quot;&gt;
-]&gt;
+  <!ENTITY debian      "<productname>Debian GNU/Linux</productname>">
+  <!ENTITY gnu         "<acronym>GNU</acronym>">
+]>
 
-&lt;refentry&gt;
-  &lt;refentryinfo&gt;
-    &lt;address&gt;
-      &amp;dhemail;
-    &lt;/address&gt;
-    &lt;author&gt;
-      &amp;dhfirstname;
-      &amp;dhsurname;
-    &lt;/author&gt;
-    &lt;copyright&gt;
-      &lt;year&gt;2001&lt;/year&gt;
-      &lt;holder&gt;&amp;dhusername;&lt;/holder&gt;
-    &lt;/copyright&gt;
-    &amp;dhdate;
-  &lt;/refentryinfo&gt;
-  &lt;refmeta&gt;
-    &amp;dhucpackage;
+<refentry>
+  <refentryinfo>
+    <address>
+      &dhemail;
+    </address>
+    <author>
+      &dhfirstname;
+      &dhsurname;
+    </author>
+    <copyright>
+      <year>2001</year>
+      <holder>&dhusername;</holder>
+    </copyright>
+    &dhdate;
+  </refentryinfo>
+  <refmeta>
+    &dhucpackage;
 
-    &amp;dhsection;
-  &lt;/refmeta&gt;
-  &lt;refnamediv&gt;
-    &lt;refname&gt;&amp;dhpackage;&lt;/refname&gt;
+    &dhsection;
+  </refmeta>
+  <refnamediv>
+    <refname>&dhpackage;</refname>
 
-    &lt;refpurpose&gt;a simple arcade game&lt;/refpurpose&gt;
-  &lt;/refnamediv&gt;
-  &lt;refsynopsisdiv&gt;
-    &lt;cmdsynopsis&gt;
-      &lt;command&gt;&amp;dhpackage;&lt;/command&gt;
+    <refpurpose>a simple arcade game</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>&dhpackage;</command>
 
-      &lt;arg&gt;&lt;option&gt;-f | --fullscreen&lt;/option&gt;&lt;/arg&gt;
-      &lt;arg&gt;&lt;option&gt;-w | --windowed&lt;/option&gt;&lt;/arg&gt;
-      &lt;arg&gt;&lt;option&gt;-s | --nosound&lt;/option&gt;&lt;/arg&gt;
-      &lt;arg&gt;&lt;option&gt;-n | --notfinal&lt;/option&gt;&lt;/arg&gt;
-      &lt;arg&gt;&lt;option&gt;-t | --noparticles&lt;/option&gt;&lt;/arg&gt;
-      &lt;arg&gt;&lt;option&gt;-o | --nofadeout&lt;/option&gt;&lt;/arg&gt;
-      &lt;arg&gt;&lt;option&gt;--precision&lt;/option&gt;&lt;/arg&gt;
-      &lt;arg&gt;&lt;option&gt;-h | --help&lt;/option&gt;&lt;/arg&gt;
+      <arg><option>-f | --fullscreen</option></arg>
+      <arg><option>-w | --windowed</option></arg>
+      <arg><option>-s | --nosound</option></arg>
+      <arg><option>-n | --notfinal</option></arg>
+      <arg><option>-t | --noparticles</option></arg>
+      <arg><option>-o | --nofadeout</option></arg>
+      <arg><option>--precision</option></arg>
+      <arg><option>-h | --help</option></arg>
 
-    &lt;/cmdsynopsis&gt;
-  &lt;/refsynopsisdiv&gt;
-  &lt;refsect1&gt;
-    &lt;title&gt;DESCRIPTION&lt;/title&gt;
+    </cmdsynopsis>
+  </refsynopsisdiv>
+  <refsect1>
+    <title>DESCRIPTION</title>
 
-    &lt;para&gt;This manual page documents briefly the
-      &lt;command&gt;&amp;dhpackage;&lt;/command&gt; command.&lt;/para&gt;
+    <para>This manual page documents briefly the
+      <command>&dhpackage;</command> command.</para>
 
-    &lt;para&gt;This manual page was written for the &amp;debian; distribution
+    <para>This manual page was written for the &debian; distribution
       because the original program does not have a manual page.
-      Instead, it has documentation in /usr/share/doc/bumprace/README.&lt;/para&gt;
+      Instead, it has documentation in /usr/share/doc/bumprace/README.</para>
 
-    &lt;para&gt;&lt;command&gt;&amp;dhpackage;&lt;/command&gt; a simple arcade game.&lt;/para&gt;
+    <para><command>&dhpackage;</command> a simple arcade game.</para>
 
-  &lt;/refsect1&gt;
-  &lt;refsect1&gt;
-    &lt;title&gt;OPTIONS&lt;/title&gt;
+  </refsect1>
+  <refsect1>
+    <title>OPTIONS</title>
 
-    &lt;para&gt;This program follows the usual GNU command line syntax,
-      with long options starting with two dashes (`-&#39;).  A summary of
-      options is included below.&lt;/para&gt;
+    <para>This program follows the usual GNU command line syntax,
+      with long options starting with two dashes (`-').  A summary of
+      options is included below.</para>
 
-    &lt;variablelist&gt;
+    <variablelist>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;&lt;option&gt;-f&lt;/option&gt;
-          &lt;option&gt;--fullscreen&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;Start in fullscreen mode (default).&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term><option>-f</option>
+          <option>--fullscreen</option>
+        </term>
+        <listitem>
+          <para>Start in fullscreen mode (default).</para>
+        </listitem>
+      </varlistentry>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;&lt;option&gt;-w&lt;/option&gt;
-          &lt;option&gt;--windowed&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;Start in windowed mode.&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term><option>-w</option>
+          <option>--windowed</option>
+        </term>
+        <listitem>
+          <para>Start in windowed mode.</para>
+        </listitem>
+      </varlistentry>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;&lt;option&gt;-s&lt;/option&gt;
-          &lt;option&gt;--nosound&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;Start without sound.&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term><option>-s</option>
+          <option>--nosound</option>
+        </term>
+        <listitem>
+          <para>Start without sound.</para>
+        </listitem>
+      </varlistentry>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;&lt;option&gt;-n&lt;/option&gt;
-          &lt;option&gt;--notfinal&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;No title screen (nice for developers).&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term><option>-n</option>
+          <option>--notfinal</option>
+        </term>
+        <listitem>
+          <para>No title screen (nice for developers).</para>
+        </listitem>
+      </varlistentry>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;&lt;option&gt;-t&lt;/option&gt;
-          &lt;option&gt;--noparticles&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;Turns off particles. Good for slow computers.&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term><option>-t</option>
+          <option>--noparticles</option>
+        </term>
+        <listitem>
+          <para>Turns off particles. Good for slow computers.</para>
+        </listitem>
+      </varlistentry>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;&lt;option&gt;-o&lt;/option&gt;
-          &lt;option&gt;--nofadeout&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;No fadeout after crash (for slow computers).&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term><option>-o</option>
+          <option>--nofadeout</option>
+        </term>
+        <listitem>
+          <para>No fadeout after crash (for slow computers).</para>
+        </listitem>
+      </varlistentry>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;
-          &lt;option&gt;--precision&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;Sets the precision of the collisions (default=10).&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term>
+          <option>--precision</option>
+        </term>
+        <listitem>
+          <para>Sets the precision of the collisions (default=10).</para>
+        </listitem>
+      </varlistentry>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;&lt;option&gt;-h&lt;/option&gt;
-          &lt;option&gt;--help&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;Show summary of options.&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term><option>-h</option>
+          <option>--help</option>
+        </term>
+        <listitem>
+          <para>Show summary of options.</para>
+        </listitem>
+      </varlistentry>
 
-    &lt;/variablelist&gt;
-  &lt;/refsect1&gt;
+    </variablelist>
+  </refsect1>
 
-  &lt;refsect1&gt;
-    &lt;title&gt;KEYS&lt;/title&gt;
+  <refsect1>
+    <title>KEYS</title>
 
-    &lt;para&gt;Player 1&lt;/para&gt;
+    <para>Player 1</para>
 
-    &lt;variablelist&gt;
+    <variablelist>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;&lt;option&gt;arrow keys&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;moving&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term><option>arrow keys</option>
+        </term>
+        <listitem>
+          <para>moving</para>
+        </listitem>
+      </varlistentry>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;&lt;option&gt;right control&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;special ability&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term><option>right control</option>
+        </term>
+        <listitem>
+          <para>special ability</para>
+        </listitem>
+      </varlistentry>
 
-    &lt;/variablelist&gt;
+    </variablelist>
 
-    &lt;para&gt;Player 2&lt;/para&gt;
+    <para>Player 2</para>
 
-    &lt;variablelist&gt;
+    <variablelist>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;&lt;option&gt;a&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;left&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term><option>a</option>
+        </term>
+        <listitem>
+          <para>left</para>
+        </listitem>
+      </varlistentry>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;&lt;option&gt;d&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;right&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term><option>d</option>
+        </term>
+        <listitem>
+          <para>right</para>
+        </listitem>
+      </varlistentry>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;&lt;option&gt;w&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;thrust&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term><option>w</option>
+        </term>
+        <listitem>
+          <para>thrust</para>
+        </listitem>
+      </varlistentry>
 
-      &lt;varlistentry&gt;
-        &lt;term&gt;&lt;option&gt;TAB&lt;/option&gt;
-        &lt;/term&gt;
-        &lt;listitem&gt;
-          &lt;para&gt;special ability&lt;/para&gt;
-        &lt;/listitem&gt;
-      &lt;/varlistentry&gt;
+      <varlistentry>
+        <term><option>TAB</option>
+        </term>
+        <listitem>
+          <para>special ability</para>
+        </listitem>
+      </varlistentry>
 
-    &lt;/variablelist&gt;
+    </variablelist>
 
-&lt;!--
+<!--
                PLAYER 1
-               &lt;arrow keys&gt;                      moving
-               &lt;right control&gt;                   special ability
+               <arrow keys>                      moving
+               <right control>                   special ability
 
                PLAYER 2
-               &lt;a&gt;                               left
-               &lt;d&gt;                               right
-               &lt;w&gt;                               thrust
-               &lt;tab&gt;                             special ability
---&gt;
-  &lt;/refsect1&gt;
+               <a>                               left
+               <d>                               right
+               <w>                               thrust
+               <tab>                             special ability
+-->
+  </refsect1>
 
-  &lt;refsect1&gt;
-    &lt;title&gt;AUTHOR&lt;/title&gt;
+  <refsect1>
+    <title>AUTHOR</title>
 
-    &lt;para&gt;This manual page was written by &amp;dhusername; &lt;&amp;dhemail;&gt; for
-      the &amp;debian; system (but may be used by others).  Permission is
+    <para>This manual page was written by &dhusername; <&dhemail;> for
+      the &debian; system (but may be used by others).  Permission is
       granted to copy, distribute and/or modify this document under
-      the terms of the &lt;acronym&gt;GNU&lt;/acronym&gt; Free Documentation
+      the terms of the <acronym>GNU</acronym> Free Documentation
       License, Version 1.1 or any later version published by the Free
       Software Foundation; with no Invariant Sections, no Front-Cover
-      Texts and no Back-Cover Texts.&lt;/para&gt;
+      Texts and no Back-Cover Texts.</para>
 
-  &lt;/refsect1&gt;
-&lt;/refentry&gt;
+  </refsect1>
+</refentry>
 
-&lt;!-- Keep this comment at the end of the file
+<!-- Keep this comment at the end of the file
 Local variables:
 mode: sgml
 sgml-omittag:t
@@ -637,11 +268,4 @@ sgml-exposed-tags:nil
 sgml-local-catalogs:nil
 sgml-local-ecat-files:nil
 End:
---&gt;
-</pre></div>
-</code></pre></td></tr></table>
-</div> <!-- class=content -->
-<div class='footer'>generated by <a href='http://git.zx2c4.com/cgit/about/'>cgit v0.12</a> at 2016-04-17 08:20:11 (GMT)</div>
-</div> <!-- id=cgit -->
-</body>
-</html>
+-->
