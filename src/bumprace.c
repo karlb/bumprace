@@ -214,11 +214,27 @@ void player_collision(int p1, int p2) {
 	user[p2].yspeed -= delta2_y;
 }
 
+int extra_pressed(int pl) {
+  return (
+  	(keys[user[pl].extra] == SDL_PRESSED) ||
+	(playernum == 1 && (
+		// if single player, any ctrl-key will do
+		(keys[user[0].extra] == SDL_PRESSED) ||
+		(keys[user[1].extra] == SDL_PRESSED)
+	))
+  );
+}
+
 void kollision()  //calcualtes all collisions
 {
   Uint8 x,y,x2,y2,sticky;
   SDL_Rect reblit_back;
-  if (( keys[user[pl].extra] == SDL_PRESSED )&&(user[pl].sticky_possible)) sticky=1; else sticky=0;
+
+  if (extra_pressed(pl) && user[pl].sticky_possible) {
+		  sticky = 1;
+  } else {
+		  sticky = 0;
+  }
 
   // handle collisions with other players
   // TODO: does this belong here?
@@ -392,7 +408,7 @@ void HandleRacer() //reads keys and sets new coordinates
     if ( keys[user[pl].left] == SDL_PRESSED ) {
       user[pl].turn-=turn_speed;
     }
-    if (( keys[user[pl].extra] == SDL_PRESSED )&&(user[pl].turbo_possible)) {
+    if (extra_pressed(pl) && user[pl].turbo_possible) {
       thrust(turbo);
     }
     user[pl].realx=user[pl].realx+user[pl].xspeed/accel_speed;
