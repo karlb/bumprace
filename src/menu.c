@@ -48,7 +48,7 @@ void help()  //prints the help & credits screeen
   PutString(Screen, 350, 220, "Graphics:");
   PutString(Screen, 350, 235, "Karl Bartel");
   PutString(Screen, 500, 220, "Background:");
-  PutString(Screen, 500, 235, "tozzie (www.tozzie-designs.com)");
+  PutString(Screen, 500, 235, "Sweetie187");
 
   PutString(Screen, 350, 265, "Packaging:");
   PutString(Screen, 350, 280, "Christian T. Steigies (debian)"),
