@@ -14,12 +14,6 @@ E-mail: tuxmym@gmail.com
 
 ====== ARTWORK ======
 
-The music was written by THE LIZARD KING
-E-mail: gustaf.grefberg@pp.itv.se
-Homepage: http://www.itv.se/~a1055/frames.html
-Files: lizard.mod
-License: free to use, modify and redistribute
-
 Background image by Sweetie187:
 Flikr: https://www.flickr.com/photos/58782395@N03/5519580228/
 Files: back2.jpg
@@ -27,7 +21,26 @@ License: Creative Commons Attribution 2.0 Generic
 	 https://creativecommons.org/licenses/by/2.0/
 Modifications: scaled to 800x600 and darkened the picture
 
+Music:
+
+Files: data/sound/Flying me softly.ogg
+Copyright: Alexandr Zhelanov
+License: CC-BY 3.0
+Homepage: https://soundcloud.com/alexandr-zhelanov
+
 Sound effects:
-Copied from an old version of the game Clanbomber
-Files: explode.wav whoosh.wav winlevel.wav
-License: GPL
+
+Files: data/sound/explosion1.ogg
+Copyright: Retimer
+License: CC-BY 3.0
+Homepage: https://opengameart.org/content/wgs-sound-fx-explosion-1
+
+Files: data/sound/Menu_Select_01.ogg
+Copyright: Little Robot Sound Factory <contact@littlerobotsoundfactory.com>
+License: CC-BY 3.0
+Homepage: https://opengameart.org/content/sci-fi-sound-effects-library
+
+Files: data/sound/Picked Coin Echo 2.ogg
+Copyright: NenadSimic
+License: CC-BY 3.0
+Homepage: https://opengameart.org/content/picked-coin-echo-2
