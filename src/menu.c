@@ -43,7 +43,7 @@ void help()  //prints the help & credits screeen
   PutString(Screen, 80, 525, "Time bonus");  
 
   PutString(Screen, 350, 165, "Code:");
-  PutString(Screen, 350, 180, "Karl Bartel (main code) <karlb@gmx.net>");
+  PutString(Screen, 350, 180, "Karl Bartel (main code) <karl42@gmail.com>");
   PutString(Screen, 350, 195, "Lion Kimbro (particles) <SnowLion@sprynet.com>");
   PutString(Screen, 350, 220, "Graphics:");
   PutString(Screen, 350, 235, "Karl Bartel");
@@ -54,10 +54,11 @@ void help()  //prints the help & credits screeen
   PutString(Screen, 350, 280, "Christian T. Steigies (debian)"),
 
   PutString(Screen, 350, 305, "Music:");
-  PutString(Screen, 350, 320, "The Lizard King (www.itv.se/~a1055/frames.html)");
+  PutString(Screen, 350, 320, "Alexandr Zhelanov");
+  PutString(Screen, 350, 335, "(soundcloud.com/alexandr-zhelanov)");
 
   PutString(Screen, 350, 365, "Sound Effects:");
-  PutString(Screen, 350, 380, "grabbed from ClanBomber");  
+  PutString(Screen, 350, 380, "Retimer, NenadSimic, Little Robot Sound Factory");  
   PutString(Screen, 350, 405, "Levels:");  
   PutString(Screen, 350, 420, "Karl Bartel");  
   PutString(Screen, 350, 435, "Stephan <emailme@enthralling.com>");  
