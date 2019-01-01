@@ -1,3 +1,9 @@
+Version 1.5.7
+ -replace audio files with CC licensed ones (Thanks Bruno Kleinert
+  <fuddl@debian.org>)
+ -update credits screen
+ -update autotools files
+
 Version 1.5.6
  -new CC licensed background image (author for old image could not be
   contacted)
