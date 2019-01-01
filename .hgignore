@@ -4,7 +4,9 @@ syntax: glob
 *~
 *.o
 tests/*.err
+bumprace
 
+# OSX
 .DS_Store
 *.swp
 *~.nib
@@ -12,6 +14,13 @@ build
 *.pbxuser
 *.perspective
 *.perspectivev3
+
+# autotools
+autom4te.cache
+Makefile
+config.{log,status}
+compile
+.deps
 
 syntax: regexp
 .*\#.*\#$
