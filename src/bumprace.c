@@ -1137,14 +1137,14 @@ void LoadSound()
 {
 	if ( SDL_Init(SDL_INIT_AUDIO) < 0 ) {ComplainAndExit();}
 	if (sound) {
-		sprintf(text,"%s/sound/Flying me softly.ogg",DATAPATH);
+		sprintf(text,"%s/sound/Flying_me_softly.ogg",DATAPATH);
 		music = Mix_LoadMUS(text);
 		if (music==NULL) {
 			printf("COULD NOT LOAD MUSIC\n");
 		}
 		sprintf(text,"%s/sound/%s",DATAPATH,"explosion1.ogg");
 		explode_sound = Mix_LoadWAV_RW(SDL_RWFromFile(text, "rb"), 1);
-		sprintf(text,"%s/sound/%s",DATAPATH,"Picked Coin Echo 2.ogg");
+		sprintf(text,"%s/sound/%s",DATAPATH,"Picked_Coin_Echo_2.ogg");
 		winlevel_sound = Mix_LoadWAV_RW(SDL_RWFromFile(text, "rb"), 1);
 		sprintf(text,"%s/sound/%s",DATAPATH,"Menu_Select_01.ogg");
 		teleport_sound = Mix_LoadWAV_RW(SDL_RWFromFile(text, "rb"), 1);
