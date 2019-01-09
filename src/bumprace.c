@@ -19,7 +19,7 @@
     Cecilienstr. 14                                                    
     12307 Berlin                                                  
     GERMANY
-    karlb@gmx.net                                                      
+    karl42@gmail.com                                                      
 */                                                                            
 #include <stdio.h>
 #include <stdlib.h>
