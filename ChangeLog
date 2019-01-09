@@ -1,3 +1,6 @@
+Version 1.5.8
+ - Remove spaces from filenames to fix problems with "make install"
+
 Version 1.5.7
  -replace audio files with CC licensed ones (Thanks Bruno Kleinert
   <fuddl@debian.org>)
