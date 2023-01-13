@@ -43,7 +43,7 @@ void help()  //prints the help & credits screeen
   PutString(Screen, 80, 525, "Time bonus");  
 
   PutString(Screen, 350, 165, "Code:");
-  PutString(Screen, 350, 180, "Karl Bartel (main code) <karl42@gmail.com>");
+  PutString(Screen, 350, 180, "Karl Bartel (main code) <karl@karl.berlin>");
   PutString(Screen, 350, 195, "Lion Kimbro (particles) <SnowLion@sprynet.com>");
   PutString(Screen, 350, 220, "Graphics:");
   PutString(Screen, 350, 235, "Karl Bartel");

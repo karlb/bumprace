@@ -16,10 +16,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA   
                                                                                 
     Karl Bartel
-    Cecilienstr. 14                                                    
-    12307 Berlin                                                  
-    GERMANY
-    karl42@gmail.com                                                      
+    karl@karl.berlin                                                      
 */                                                                            
 #include <stdio.h>
 #include <stdlib.h>
