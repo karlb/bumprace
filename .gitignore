@@ -1,0 +1,7 @@
+*.o
+/src/bumprace
+Makefile
+autom4te.cache/
+config.*
+.deps
+/compile
