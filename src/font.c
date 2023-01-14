@@ -92,7 +92,7 @@ void InitFont2(SFont_FontInfo *Font)
     if (SDL_MUSTLOCK(Font->Surface)) SDL_UnlockSurface(Font->Surface);
 
     Font->h=Font->Surface->h;
-    SDL_SetColorKey(Font->Surface, SDL_SRCCOLORKEY, GetPixel(Font->Surface, 0, Font->Surface->h-1));
+    /* SDL_SetColorKey(Font->Surface, SDL_SRCCOLORKEY, GetPixel(Font->Surface, 0, Font->Surface->h-1)); */
 }
 
 void InitFont(SDL_Surface *Font)
@@ -175,12 +175,13 @@ void XCenteredString(SDL_Surface *Surface, int y, char *text)
 
 void SFont_InternalInput( SDL_Surface *Dest, SFont_FontInfo *Font, int x, int y, int PixelWidth, char *text)
 {
+  /*
     SDL_Event event;
     int ch=-1,blink=0;
     long blinktimer=0;
     SDL_Surface *Back;
     SDL_Rect rect;
-	SDLKey sym;
+    SDLKey sym;
     int previous;
 //    int ofs=(text[0]-33)*2+1;
 //    int leftshift=(Font->CharPos[ofs]-Font->CharPos[ofs-1])/2;
@@ -242,6 +243,7 @@ void SFont_InternalInput( SDL_Surface *Dest, SFont_FontInfo *Font, int x, int y,
     text[strlen(text)]='\0';
     SDL_FreeSurface(Back);
     SDL_EnableUNICODE(previous);  //restore the previous state
+*/
 }
 
 void SFont_Input2( SDL_Surface *Dest, SFont_FontInfo *Font, int x, int y, int PixelWidth, char *text)
