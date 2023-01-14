@@ -241,13 +241,12 @@ SDL_Surface *LoadImage(char *datafile, int transparent)   // reads one png into 
   }
   if (transparent==3) return(pic);
   if (transparent==1)
-    SDL_SetColorKey(pic,SDL_SRCCOLORKEY|SDL_RLEACCEL,SDL_MapRGB(pic->format,0xFF,0xFF,0xFF));
+    SDL_SetColorKey(pic, SDL_TRUE, SDL_MapRGB(pic->format,0xFF,0xFF,0xFF));
   if (transparent==2)
-    SDL_SetColorKey(pic,SDL_SRCCOLORKEY|SDL_RLEACCEL,SDL_MapRGB(pic->format,0x00,0x00,0x00));
-  pic2 = SDL_DisplayFormat(pic);
+    SDL_SetColorKey(pic, SDL_TRUE, SDL_MapRGB(pic->format,0x00,0x00,0x00));
+  pic2 = SDL_ConvertSurface(pic, Screen->format, 0);
+  if (pic2 == NULL) ComplainAndExit();
   SDL_FreeSurface(pic);
-//  blit(0,0,pic2);
-//  SDL_UpdateRect(screen,0,0,0,0);
   return (pic2);
 }
 
