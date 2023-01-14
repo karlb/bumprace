@@ -69,13 +69,13 @@ void help()  //prints the help & credits screeen
   PutString(Screen, 350, 510, "modified MikMod (for SDL)");  
 
   PutString(Screen, 40, 580, "You can find the BumpRace web page at: http://www.linux-games.com");
-  SDL_UpdateRect(Screen,0,0,0,0);
+  Update();
   SDL_WaitEvent(&event);
   SDL_WaitEvent(&event);
   clear_screen();
   BlitMenu();
   Blit(100,0,selectp_pic[pl]);
-  SDL_UpdateRect(Screen,0,0,0,0);
+  Update();
 }
 
 // ********************************  Main Menu  *****************
@@ -133,7 +133,7 @@ void FadeSelectorOut(int y, int mode)
   SDL_FillRect(Screen,&dstrect,0);
   dstrect.x=250+mode*250;dstrect.y=y;dstrect.w=10;dstrect.h=100;
   SDL_FillRect(Screen,&dstrect,0);
-  SDL_UpdateRect(Screen,40+mode*250,y-10,220,120);
+  Update();
 }
 
 void FadeSelectorIn(int y, int mode)
@@ -252,12 +252,6 @@ void load_racer() //loads the racer data
 
 void SelectRacer()  //menu for racer selection
 {  
-  SDL_Rect fillrect;
-  
-  fillrect.x=50;
-  fillrect.y=140;
-  fillrect.w=700;
-  fillrect.h=430;
   SDL_PollEvent(&event);
   keys = SDL_GetKeyboardState(NULL);
   while (keys[SDL_SCANCODE_RETURN]==SDL_PRESSED)  
@@ -285,6 +279,6 @@ void SelectRacer()  //menu for racer selection
       {user[pl].racernum-=3;}
       if (user[pl].racernum>5) user[pl].racernum=5;
     BlitMenu();
-    SDL_UpdateRects(Screen,1,&fillrect);
+    Update();
   }
 }

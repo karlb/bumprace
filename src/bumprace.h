@@ -7,7 +7,7 @@
 
 void BlitMenu();
 
-#define SDL_SetAlpha(A,B,C) SDL_SetAlpha(A,0,0);SDL_SetAlpha(A,B,C)
+#define SDL_SetAlpha(A,B,C) SDL_SetSurfaceAlphaMod(A,C);
 
 typedef struct{
   float       slowdown,turbo_possible,sticky_possible,extra_time;

@@ -13,6 +13,8 @@ char DATAPATH[200]=DATADIR;
 const char PATH[PATHNUM][200]={DATADIR,".","data","/usr/local/share/bumprace"
 ,"/usr/lib/bumprace","../data","/usr/share/bumprace", DATADIR};
 SDL_Surface *Screen,*BackBuffer,*fadebuffer;
+SDL_Texture *sdlTexture;
+SDL_Renderer *sdlRenderer;
 SDL_Rect blitrect,blitrects[RECTS_NUM];
 int blitrects_num=0;
 #ifdef DATADIR
@@ -79,57 +81,41 @@ int fast_putpixel4(SDL_Surface *Surface, Sint32 X, Sint32 Y, Uint32 Color)
   return 0;
 }
 
-void init_SDL()  // sets the video mode
+void init_SDL(char *window_name)  // sets the video mode
 {
-  int bpp=BPP;
-  const SDL_VideoInfo *info;
+  Uint32 flags = SDL_WINDOW_ALLOW_HIGHDPI;
+  int w=800, h=600;
 
-  if ( SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_AUDIO) < 0 ) {ComplainAndExit();}
-  info = SDL_GetVideoInfo();
-  if (info->vfmt->BitsPerPixel==8) bpp=16;
-  atexit(SDL_Quit);
-// Set the video mode (800x600 at 16-bit depth)  
   if (fullscreen)  
-    Screen = SDL_SetVideoMode(800, 600, BPP, SDL_FULLSCREEN);
-  else 
-    { Screen = SDL_SetVideoMode(800, 600, BPP, 0); }
-  if ( Screen == NULL ) {ComplainAndExit();}
-// create BackBuffer
-  BackBuffer = SDL_AllocSurface(Screen->flags,
-                               800,
-                               600,
-                               Screen->format->BitsPerPixel,
-                               Screen->format->Rmask,
-                               Screen->format->Gmask,
-                               Screen->format->Bmask, 0);
-  if (BackBuffer == NULL)
-  printf("ERROR: Couldn't create BackBuffer: %s\n", SDL_GetError());
-  fadebuffer = SDL_AllocSurface(Screen->flags,
-                               800,
-                               600,
-                               Screen->format->BitsPerPixel,
-                               Screen->format->Rmask,
-                               Screen->format->Gmask,
-                               Screen->format->Bmask, 0);
-  if (fadebuffer == NULL)
-  printf("ERROR: Couldn't create fadebuffer: %s\n", SDL_GetError());
-// Figure out what putpixel routine to use
-   switch (Screen->format->BytesPerPixel)
-   {
-    case 1:
-      _PutPixel = fast_putpixel1;
-      break;
-    case 2:
-      _PutPixel = fast_putpixel2;
-      break;
-    case 3:
-      _PutPixel = fast_putpixel3;
-      break;
-    case 4:
-      _PutPixel = fast_putpixel4;
-      break;
-   }
+    flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+  SDL_Window *sdl_window;
+  if (SDL_CreateWindowAndRenderer(w, h, flags, &sdl_window, &sdlRenderer))
+    ComplainAndExit();
+  SDL_SetWindowTitle(sdl_window, window_name);
+  SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+  SDL_RenderSetLogicalSize(sdlRenderer, w, h);
+
+  Screen = SDL_CreateRGBSurface(0, w, h, 32,
+      0x00FF0000,
+      0x0000FF00,
+      0x000000FF,
+      0xFF000000);
+  BackBuffer = SDL_CreateRGBSurface(0, w, h, 32,
+      0x00FF0000,
+      0x0000FF00,
+      0x000000FF,
+      0xFF000000);
+  fadebuffer = SDL_CreateRGBSurface(0, w, h, 32,
+      0x00FF0000,
+      0x0000FF00,
+      0x000000FF,
+      0xFF000000);
+  sdlTexture = SDL_CreateTexture(sdlRenderer,
+      SDL_PIXELFORMAT_ARGB8888,
+      SDL_TEXTUREACCESS_STREAMING,
+      w, h);
 }
+
 
 void lock()
 {
@@ -144,59 +130,6 @@ void unlock()
 	                SDL_UnlockSurface(Screen); }                                                                       
 }
 
-// Performs Callback at each line point. This came straight from the
-// asphyxia vga trainers
-int DoLine (SDL_Surface *Surface, Sint32 X1, Sint32 Y1, Sint32 X2, Sint32 Y2, Uint32 Color, int Callback (SDL_Surface *Surf, Sint32 X, Sint32 Y, Uint32 Color))
-{ 
-  Sint32 dx, dy, sdx, sdy, x, y, px, py; 
- 
-  dx = X2 - X1; 
-  dy = Y2 - Y1; 
- 
-  sdx = (dx < 0) ? -1 : 1; 
-  sdy = (dy < 0) ? -1 : 1; 
- 
-  dx = sdx * dx + 1; 
-  dy = sdy * dy + 1; 
- 
-  x = y = 0; 
- 
-  px = X1; 
-  py = Y1; 
- 
-  if (dx >= dy) 
-    { 
-      for (x = 0; x < dx; x++) 
-	{ 
-          Callback(Surface, px, py, Color);
-	 
-	  y += dy; 
-	  if (y >= dx) 
-	    { 
-	      y -= dx; 
-	      py += sdy; 
-	    } 
-	  px += sdx; 
-	} 
-    } 
-  else 
-    { 
-      for (y = 0; y < dy; y++) 
-	{ 
- 
-          Callback(Surface, px, py, Color);
- 
-	  x += dx; 
-	  if (x >= dy) 
-	    { 
-	      x -= dy; 
-	      px += sdx; 
-	    } 
-	  py += sdy; 
-	} 
-    } 
-   return 0;
-}
 
 void fadeout()
 {
@@ -211,14 +144,14 @@ void fadeout()
 		time = SDL_GetTicks();
 		rect.y = y;
 		SDL_FillRect(Screen, &rect, SDL_MapRGB(Screen->format, 0,0,0));
-		SDL_UpdateRects(Screen, 1, &rect);
+		Update();
 		if (time == SDL_GetTicks())
 			SDL_Delay(1);
 	}
 	for (y=599; y>0; y-=2) {
 		rect.y = y;
 		SDL_FillRect(Screen, &rect, SDL_MapRGB(Screen->format, 0,0,0));
-		SDL_UpdateRects(Screen, 1, &rect);
+		Update();
 	}
 	
 	/*
@@ -250,45 +183,20 @@ void fadeout()
 
 void Update()
 {
-  SDL_UpdateRects(Screen,blitrects_num,blitrects);
-  blitrects_num=0;
+  SDL_UpdateTexture(sdlTexture, NULL, Screen->pixels, Screen->pitch);
+  SDL_RenderClear(sdlRenderer);
+  SDL_RenderCopy(sdlRenderer, sdlTexture, NULL, NULL);
+  SDL_RenderPresent(sdlRenderer);
 }
 
 void AddRect(int x1, int y1, int x2, int y2)
 {
-  int temp;
-
-   /* Make sure X1 is before X2 */
-   if (x2 < x1){
-      temp = x2;
-      x2 = x1;
-      x1 = temp;
-   }
-   /* Make sure Y1 is before Y2 */
-   if (y2 < y1){
-      temp = y2;
-      y2 = y1;
-      y1 = temp;
-   }
-  blitrect.x = x1;
-  blitrect.y = y1;
-  blitrect.w = x2-x1+1;
-  blitrect.h = y2-y1+1;
-  if (x1<0) printf("x is too small in function AddRect!  -  %d\n",x1);else
-  if (y1<0) printf("y is too small in function AddRect!  -  %d\n",y1);else
-  if (x2>=800) printf("x is too big in function AddRect!  -  %d\n",x2);else
-  if (y2>=600) printf("y is too big in function AddRect!  -  %d\n",y2);else {
-      blitrects[blitrects_num]=blitrect;
-      if (++blitrects_num>=RECTS_NUM-2)
-      {printf("Too many blits!\n");blitrects_num--;Update();}
-  }
+  // noop after SDL2 migration
 }
 
 void AddThisRect(SDL_Rect blitrect)
 {
-    blitrects[blitrects_num]=blitrect;
-    if (++blitrects_num>=RECTS_NUM-2)
-        {printf("Too many blits!\n");blitrects_num--;Update();}
+  // noop after SDL2 migration
 }
 
 void Blit(int Xpos,int Ypos,SDL_Surface *image)  //blits one GIF or BMP from the memory to the screen
@@ -392,6 +300,7 @@ void FadeScreen(float speed)
 
 int PutPixel(SDL_Surface *Surface, Sint32 X, Sint32 Y, Uint32 Color)
 {
+	return; // SDL2-MIGRATION
     if (X<0) printf("X < 0 in function PutPixel! - %d\n",X); else
     if (X>=800) printf("X >= 800 in function PutPixel! - %d\n",X); else
     if (Y<0) printf("Y < 0 in function PutPixel! - %d\n",Y); else
@@ -405,6 +314,7 @@ int PutPixel(SDL_Surface *Surface, Sint32 X, Sint32 Y, Uint32 Color)
 
 int PutPixelC(SDL_Surface *Surface, Sint32 X, Sint32 Y, Uint32 Color)
 {
+	return; // SDL2-MIGRATION
     if (X<0) printf("X < 0 in function PutPixelC! - %d\n",X); else
     if (X>=800) printf("X >= 800 in function PutPixelC! - %d\n",X); else
     if (Y<0) printf("Y < 0 in function PutPixelC! - %d\n",Y); else
@@ -418,6 +328,7 @@ int PutPixelC(SDL_Surface *Surface, Sint32 X, Sint32 Y, Uint32 Color)
 
 void PutBackPixel(SDL_Surface *Surface, Sint32 X, Sint32 Y)
 {
+	return; // SDL2-MIGRATION
     SDL_Rect rect;
     
     rect.w=1;

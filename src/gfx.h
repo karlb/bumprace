@@ -2,6 +2,7 @@
 #define backbuffer BackBuffer
 
 extern SDL_Surface *Screen,*BackBuffer,*fadebuffer;
+extern SDL_Renderer *sdlRenderer;
 extern SDL_Rect blitrect;
 extern char DATAPATH[200];
 
