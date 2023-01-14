@@ -14,7 +14,7 @@ typedef struct{
   float       realx,realy,xspeed,yspeed,turn,teleported;
   int         crashed,completed,racernum,points;
   SDL_Rect    oldrect;
-  SDLKey      up,down,left,right,extra;
+  SDL_Keycode up,down,left,right,extra;
   SDL_Surface *racer[18];
 }player;
 
@@ -47,7 +47,7 @@ extern SDL_Surface *screen, *back, *backbuffer, *fore[16],
        *title_pic;
 extern float game_speed, gravity;
 extern int particle,which_racer,pl,i,mode,playernum,Score,fullscreen,precision,dofadeout;
-extern Uint8 *keys;
+extern const Uint8 *keys;
 extern SDL_Event event;
 extern struct BitFont font;
 extern Sint32 now;

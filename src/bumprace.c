@@ -68,7 +68,7 @@
                    *mode_select_pic[4], *selector_pic, *selectp_pic[2],
 		   *Font,*laser_pic[9];
      //event handling  
-       SDL_Event event;  Uint8 *keys;
+       SDL_Event event;  const Uint8 *keys;
      //game states
        int endgame=0,dontshow=0,levelnum=0,quit=0,already=0,laser_state;
      //level vars
@@ -111,7 +111,7 @@ void timing()
   average_speed=time_since_start/frame_count;
   //printf("gamespeed: %f    average: %f \n",game_speed,average_speed);
   lifetime-=game_speed;
-  if ( keys[SDLK_ESCAPE] == SDL_PRESSED ) 
+  if ( keys[SDL_SCANCODE_ESCAPE] == SDL_PRESSED ) 
     {quit=1;endgame=1;}  
   frame_count++;
   frames_per_second=frame_count*1000/((SDL_GetTicks()-count_start)+1);
@@ -395,7 +395,7 @@ void HandleRacer() //reads keys and sets new coordinates
     accel_speed=400000/(game_speed/precision);
 
     SDL_PollEvent(&event);
-    keys = SDL_GetKeyState(NULL);
+    keys = SDL_GetKeyboardState(NULL);
     if ( keys[user[pl].up] == SDL_PRESSED ) {
       thrust(1);
     }
@@ -1163,9 +1163,8 @@ int main(int argc, char *argv[])
   srand( (unsigned) time(NULL) );    
   SDL_EventState(SDL_MOUSEMOTION, SDL_IGNORE);                                  
   fullscreen=0;  //activate update_rects
-  SDL_EnableUNICODE(1);
-  user[0].up=SDLK_UP;user[0].down=SDLK_DOWN;user[0].left=SDLK_LEFT;user[0].right=SDLK_RIGHT;user[0].extra=SDLK_RCTRL;
-  user[1].up=SDLK_w;user[1].down=SDLK_s;user[1].left=SDLK_a;user[1].right=SDLK_d;user[1].extra=SDLK_LCTRL;
+  user[0].up=SDL_SCANCODE_UP;user[0].down=SDL_SCANCODE_DOWN;user[0].left=SDL_SCANCODE_LEFT;user[0].right=SDL_SCANCODE_RIGHT;user[0].extra=SDL_SCANCODE_RCTRL;
+  user[1].up=SDL_SCANCODE_W;user[1].down=SDL_SCANCODE_S;user[1].left=SDL_SCANCODE_A;user[1].right=SDL_SCANCODE_D;user[1].extra=SDL_SCANCODE_LCTRL;
   ReadOptions();
   ReadOptions();
 //show title screen

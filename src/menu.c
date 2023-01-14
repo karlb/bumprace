@@ -187,20 +187,20 @@ void Menu()
   }
   mode=0;update=1;
   SDL_PollEvent(&event);
-  keys = SDL_GetKeyState(NULL);
-  while ( keys[SDLK_RETURN]!=SDL_PRESSED)
+  keys = SDL_GetKeyboardState(NULL);
+  while ( keys[SDL_SCANCODE_RETURN]!=SDL_PRESSED)
   {
     if (update) FadeSelectorIn(y,mode);
     SDL_PollEvent(&event);
-    keys = SDL_GetKeyState(NULL);
+    keys = SDL_GetKeyboardState(NULL);
     update=0;
-    if (( keys[SDLK_RIGHT] == SDL_PRESSED )&&(mode<2))
+    if (( keys[SDL_SCANCODE_RIGHT] == SDL_PRESSED )&&(mode<2))
       {FadeSelectorOut(y,mode);mode++;update=1;}
-    if (( keys[SDLK_LEFT] == SDL_PRESSED )&&(mode>0)&&(mode<3))
+    if (( keys[SDL_SCANCODE_LEFT] == SDL_PRESSED )&&(mode>0)&&(mode<3))
       {FadeSelectorOut(y,mode);mode--;update=1;}
-    if (( keys[SDLK_DOWN] == SDL_PRESSED )&&(mode<3))
+    if (( keys[SDL_SCANCODE_DOWN] == SDL_PRESSED )&&(mode<3))
       {FadeSelectorOut(y,mode);mode=3;update=1;}
-    if (( keys[SDLK_UP] == SDL_PRESSED )&&(mode==3))
+    if (( keys[SDL_SCANCODE_UP] == SDL_PRESSED )&&(mode==3))
       {FadeSelectorOut(y+120,1);mode=1;update=1;}
     SDL_WaitEvent(&event);
   }
@@ -259,28 +259,29 @@ void SelectRacer()  //menu for racer selection
   fillrect.w=700;
   fillrect.h=430;
   SDL_PollEvent(&event);
-  keys = SDL_GetKeyState(NULL);
-  while (keys[SDLK_RETURN]==SDL_PRESSED)  
+  keys = SDL_GetKeyboardState(NULL);
+  while (keys[SDL_SCANCODE_RETURN]==SDL_PRESSED)  
   {
     SDL_PollEvent(&event);
-    keys = SDL_GetKeyState(NULL);
+    keys = SDL_GetKeyboardState(NULL);
   }
-  while (keys[SDLK_RETURN]!=SDL_PRESSED)  
+  while (keys[SDL_SCANCODE_RETURN]!=SDL_PRESSED)  
   {    
     SDL_PollEvent(&event);
-    keys = SDL_GetKeyState(NULL);
+    keys = SDL_GetKeyboardState(NULL);
     while (!SDL_WaitEvent(&event))
     {
       SDL_PollEvent(&event);
-      keys = SDL_GetKeyState(NULL);
+      keys = SDL_GetKeyboardState(NULL);
     }
-    if (( keys[SDLK_RIGHT] == SDL_PRESSED )&&(user[pl].racernum<5))
+    SDL_PumpEvents();
+    if (( keys[SDL_SCANCODE_RIGHT] == SDL_PRESSED )&&(user[pl].racernum<5))
       {user[pl].racernum++;}
-    if (( keys[SDLK_LEFT] == SDL_PRESSED  )&&(user[pl].racernum>0))
+    if (( keys[SDL_SCANCODE_LEFT] == SDL_PRESSED  )&&(user[pl].racernum>0))
       {user[pl].racernum--;}
-    if (( keys[SDLK_DOWN] == SDL_PRESSED  )&&(user[pl].racernum<3))
+    if (( keys[SDL_SCANCODE_DOWN] == SDL_PRESSED  )&&(user[pl].racernum<3))
       {user[pl].racernum+=3;}
-    if (( keys[SDLK_UP] == SDL_PRESSED    )&&(user[pl].racernum>2))
+    if (( keys[SDL_SCANCODE_UP] == SDL_PRESSED    )&&(user[pl].racernum>2))
       {user[pl].racernum-=3;}
       if (user[pl].racernum>5) user[pl].racernum=5;
     BlitMenu();
