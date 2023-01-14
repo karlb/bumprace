@@ -29,57 +29,6 @@ int abrand(int a,int b)  //random number between a and b (inclusive)
   return(a+(rand() % (b-a+1)));
 }
 
-int (*_PutPixel)(SDL_Surface *Surface, Sint32 X, Sint32 Y, Uint32 Color);
-
-int fast_putpixel1(SDL_Surface *Surface, Sint32 X, Sint32 Y, Uint32 Color)
-{
-  if (X < 0 || X > Surface->w || Y < 0 || Y > Surface->h) 
-    return -1;
-
-  *((Uint8 *)Surface->pixels + Y * Surface->pitch + X) = Color;
-
-  return 0;
-}
-
-int fast_putpixel2(SDL_Surface *Surface, Sint32 X, Sint32 Y, Uint32 Color)
-{
-  if (X < 0 || X > Surface->w || Y < 0 || Y > Surface->h) 
-    return -1;
-
- *((Uint16 *)Surface->pixels + Y * Surface->pitch/2 + X) = Color;
-
-  return 0;
-}
-
-int fast_putpixel3(SDL_Surface *Surface, Sint32 X, Sint32 Y, Uint32 Color)
-{
-  Uint8 *pix;
-  int shift;
-
-  if (X < 0 || X > Surface->w || Y < 0 || Y > Surface->h) 
-    return -1;
-
-  /* Gack - slow, but endian correct */
-  pix = (Uint8 *)Surface->pixels + Y * Surface->pitch + X*3;
-  shift = Surface->format->Rshift;
-  *(pix+shift/8) = Color>>shift;
-  shift = Surface->format->Gshift;
-  *(pix+shift/8) = Color>>shift;
-  shift = Surface->format->Bshift;
-  *(pix+shift/8) = Color>>shift;
-
-  return 0;
-}
-
-int fast_putpixel4(SDL_Surface *Surface, Sint32 X, Sint32 Y, Uint32 Color)
-{
-  if (X < 0 || X > Surface->w || Y < 0 || Y > Surface->h) 
-    return -1;
-
-  *((Uint32 *)Surface->pixels + Y * Surface->pitch/4 + X) = Color;
-
-  return 0;
-}
 
 void init_SDL(char *window_name)  // sets the video mode
 {
@@ -153,32 +102,6 @@ void fadeout()
 		SDL_FillRect(Screen, &rect, SDL_MapRGB(Screen->format, 0,0,0));
 		Update();
 	}
-	
-	/*
-  int x,y;
-  
-  if (dofadeout==0) return;
-  
-  for (x=0;x<800;x++)
-  {
-    lock();
-    for (y=0;y<300;y++)
-    {
-      PutPixel(Screen,x,y*2,SDL_MapRGB(Screen->format,0,0,0));
-    }
-    unlock();
-    Update();
-  }
-  for (x=799;x>=0;x--)
-  {
-    lock();
-    for (y=299;y>0;y--)
-    {
-      PutPixel(Screen,x,y*2+1,SDL_MapRGB(Screen->format,0,0,0));
-    }
-    unlock();
-    Update();
-  }*/
 }
 
 void Update()
@@ -299,35 +222,19 @@ void FadeScreen(float speed)
 
 int PutPixel(SDL_Surface *Surface, Sint32 X, Sint32 Y, Uint32 Color)
 {
-	return; // SDL2-MIGRATION
+    Uint32 offset = Y * Surface->pitch + X * Surface->format->BytesPerPixel;
     if (X<0) printf("X < 0 in function PutPixel! - %d\n",X); else
     if (X>=800) printf("X >= 800 in function PutPixel! - %d\n",X); else
     if (Y<0) printf("Y < 0 in function PutPixel! - %d\n",Y); else
     if (Y>=600) printf("Y >= 600 in function PutPixel! - %d\n",Y); else
     {
-        _PutPixel(Surface,X,Y,Color);
-        AddRect(X,Y,X,Y);
-    }
-    return 0;
-}
-
-int PutPixelC(SDL_Surface *Surface, Sint32 X, Sint32 Y, Uint32 Color)
-{
-	return; // SDL2-MIGRATION
-    if (X<0) printf("X < 0 in function PutPixelC! - %d\n",X); else
-    if (X>=800) printf("X >= 800 in function PutPixelC! - %d\n",X); else
-    if (Y<0) printf("Y < 0 in function PutPixelC! - %d\n",Y); else
-    if (Y>=600) printf("Y >= 600 in function PutPixelC! - %d\n",Y); else
-    {
-        _PutPixel(Surface,X,Y,Color);
-        AddRect(X,Y,X,Y);
+      *(Uint32 *)(Surface->pixels + offset) = Color;
     }
     return 0;
 }
 
 void PutBackPixel(SDL_Surface *Surface, Sint32 X, Sint32 Y)
 {
-	return; // SDL2-MIGRATION
     SDL_Rect rect;
     
     rect.w=1;
