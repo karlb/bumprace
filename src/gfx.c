@@ -17,13 +17,13 @@ SDL_Texture *sdlTexture;
 SDL_Renderer *sdlRenderer;
 SDL_Rect blitrect,blitrects[RECTS_NUM];
 int blitrects_num=0;
-#ifdef DATADIR
+
 void ComplainAndExit(void)
 {
         fprintf(stderr, "Problem: %s\n", SDL_GetError());
         exit(1);
 }
-#endif
+
 int abrand(int a,int b)  //random number between a and b (inclusive)
 {
   return(a+(rand() % (b-a+1)));
