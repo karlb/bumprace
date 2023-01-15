@@ -1150,6 +1150,7 @@ int main(int argc, char *argv[])
   if (sound) {InitSound();}
 #endif
   init_SDL("BumpRace");
+  SDL_PollEvent(&event);
   SDL_ShowCursor(0);
   printf("** Video mode set **\n");
   srand( (unsigned) time(NULL) );    
