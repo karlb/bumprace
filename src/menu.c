@@ -1,26 +1,18 @@
 #include "bumprace.h"
 #include <math.h>
 
+void clear(SDL_Surface *surface) {
+  SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 0, 0, 0));
+}
+
 void clear_screen()
 {
-  SDL_Rect fillrect;
-
-  fillrect.x=0;
-  fillrect.y=0;
-  fillrect.w=800;
-  fillrect.h=600;
-  SDL_FillRect(Screen,&fillrect,0);
+  clear(Screen);
 }
 
 void clear_bb()
 {
-  SDL_Rect fillrect;
-
-  fillrect.x=0;
-  fillrect.y=0;
-  fillrect.w=800;
-  fillrect.h=600;
-  SDL_FillRect(backbuffer,&fillrect,0);
+  clear(backbuffer);
 }
 
 //************************  HELP MENU  ***********************
