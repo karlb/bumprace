@@ -1071,7 +1071,7 @@ void StartText()
   rect.x=50;
   rect.y=380;
   rect.w=700;
-  rect.h=90;
+  rect.h=220;
   SDL_FillRect(Screen,&rect,0);
 }
 
