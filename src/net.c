@@ -1,6 +1,7 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <stdio.h>
+// for player struct
 #include "bumprace.h"
 
 extern struct sockaddr_in client_address, server_address;
