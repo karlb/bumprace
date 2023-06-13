@@ -124,7 +124,7 @@ depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/bumprace.Po ./$(DEPDIR)/font.Po \
 	./$(DEPDIR)/gfx.Po ./$(DEPDIR)/menu.Po ./$(DEPDIR)/options.Po \
-	./$(DEPDIR)/particles.Po
+	./$(DEPDIR)/particles.Po ./$(DEPDIR)/net.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -273,7 +273,7 @@ bumprace_SOURCES = bumprace.c \
 	gfx.c particles.c menu.c \
 	bumprace.h  gfx.h \
 	levels.h levels2.h menu.h  particles.h \
-	options.h options.c font.h font.c
+	options.h options.c font.h font.c net.c net.h
 
 all: all-am
 
@@ -367,6 +367,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/menu.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/options.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/particles.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/net.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -521,6 +522,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/menu.Po
 	-rm -f ./$(DEPDIR)/options.Po
 	-rm -f ./$(DEPDIR)/particles.Po
+	-rm -f ./$(DEPDIR)/net.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -572,6 +574,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/menu.Po
 	-rm -f ./$(DEPDIR)/options.Po
 	-rm -f ./$(DEPDIR)/particles.Po
+	-rm -f ./$(DEPDIR)/net.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
