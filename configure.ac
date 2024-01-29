@@ -49,7 +49,7 @@ AC_CHECK_LIB(SDL_mixer, main, SOUND="-lSDL_mixer";CFLAGS="$CFLAGS -DSOUND")
 AC_CHECK_LIB(SDL_image, main, , AC_MSG_ERROR(Your system is missing libSDL_image!))
 
 ######## Set compiler flags and libraries
-CFLAGS="$CFLAGS $SDL_CFLAGS -DDATADIR=\\\"$datadir/bumprace\\\""
+CFLAGS="$CFLAGS -DNET $SDL_CFLAGS -DDATADIR=\\\"$datadir/bumprace\\\""
 LIBS="$LIBS $SDL_LIBS -lSDL_image $SOUND -lz -lSDL"
 
 ######## Check for headers
