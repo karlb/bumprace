@@ -5017,6 +5017,7 @@ if test "x$ac_cv_lib_SDL_mixer_main" = xyes
 then :
   SOUND="-lSDL_mixer";CFLAGS="$CFLAGS -DSOUND"
 fi
+CFLAGS="$CFLAGS -DNET"
 
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for main in -lSDL_image" >&5
 printf %s "checking for main in -lSDL_image... " >&6; }
