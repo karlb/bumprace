@@ -270,9 +270,12 @@ target_vendor = @target_vendor@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-bumprace_SOURCES = bumprace.c gfx.c particles.c menu.c bumprace.h \
-	gfx.h levels.h levels2.h menu.h particles.h options.h \
-	options.c font.h font.c net.h net.c
+bumprace_SOURCES = bumprace.c \
+	gfx.c particles.c menu.c \
+	bumprace.h  gfx.h \
+	levels.h levels2.h menu.h  particles.h \
+	options.h options.c font.h font.c net.h net.c
+
 all: all-am
 
 .SUFFIXES:
