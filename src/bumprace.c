@@ -37,7 +37,7 @@
 #include "bumprace.h"
 #include "font.h"
 #include "options.h"
-#define NET
+
 #ifdef NET
 #include <sys/socket.h>
 #include <netdb.h>
