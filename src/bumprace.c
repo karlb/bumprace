@@ -60,7 +60,7 @@
 
 #ifdef NET
        int client=0,Skt=0,Port=7664;
-       struct protoent *protoent;
+       //struct protoent *protoent;
        struct sockaddr_in client_address, server_address;
        char* Ip;
 #endif
@@ -1233,8 +1233,10 @@ if (client && (!(Skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
     ResetLevels();
 #ifdef NET
     if (client != 2)
-#endif
       levelnum=abrand(0,NUMBER_OF_LEVELS[levelset]-1);
+#else
+    levelnum=abrand(0,NUMBER_OF_LEVELS[levelset]-1);
+#endif
     sprintf(text,"BumpRace: Level #%d",levelnum);
     SDL_WM_SetCaption(text,"BumpRace");
     for (pl=0;pl<playernum;pl++) {user[pl].racernum=0;user[pl].points=0;}
@@ -1286,9 +1288,7 @@ if (client && (!(Skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
       client_address.sin_family = AF_INET;
       client_address.sin_port = htons(Port);
       client_address.sin_addr.s_addr = inet_addr(Ip);
-      printf("asking for map\n");
       ClientGameInit();
-      printf("ready to rumble\n");
       // disable user 0 controls
       user[1].up=user[0].up;user[1].down=user[0].down;user[1].left=user[0].left;user[1].right=user[0].right;user[1].extra=user[1].extra;
       user[0].up=0;user[0].down=0;user[0].left=0;user[0].right=0;user[0].extra=0;
@@ -1304,18 +1304,21 @@ if (client && (!(Skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
       {
         HandleAndDraw_RacerParticlesAndShots();
         pl=0;
-        if (playernum==1 
 #ifdef NET
-                && client != 2
+        if (playernum==1 
+                && client != 2)
+#else
+        if (playernum==1)
 #endif //NET
-           ) checks_1p();
+           checks_1p();
         if (playernum==2) checks_2p();
         checks_common();
 #ifdef NET
+    printf("client: %d\n", client);
         if (client==1) {
           recState(&client_address, sizeof(client_address), &(user[1]));// server
           sendState(&client_address, sizeof(client_address), &(user[0]));
-        } else if (client=2){ 
+        } else if (client==2){ 
           sendState(&server_address, sizeof(server_address), &(user[1]));//client
           recState(&server_address, sizeof(server_address), &(user[0]));
         }
