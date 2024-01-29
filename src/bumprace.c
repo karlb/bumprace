@@ -1277,9 +1277,7 @@ if (client && (!(Skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
         perror("failed Bind\n");
         exit(EXIT_FAILURE);
       }
-      printf("bound\n");
       ServerGameInit();
-      printf("ready to rumble\n");
       // disable user1 controls
       user[1].up=0;user[1].down=0;user[1].left=0;user[1].right=0;user[1].extra=0;
     } else if (client == 2){// client
@@ -1314,7 +1312,6 @@ if (client && (!(Skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
         if (playernum==2) checks_2p();
         checks_common();
 #ifdef NET
-    printf("client: %d\n", client);
         if (client==1) {
           recState(&client_address, sizeof(client_address), &(user[1]));// server
           sendState(&client_address, sizeof(client_address), &(user[0]));
