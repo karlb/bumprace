@@ -38,7 +38,7 @@ Last Racer:  press control to stick to walls
 "--pageflip"     "-p"      flicker-free fullscreen, slow and extremly buggy
 "--precision [value]"      sets the precision of the collisions (default=10) 
                            using this is not recommended
-"--server"	 "-S"	   act as a server listening
+"--server"	 "-S"	   act as a server
 "--client [ip4]" "-c"	   send request to server on ipv4 ip4
 "--port [port]"	 "-p"	   set the port to listen/send over if client and server are set
 "--help"	 "-h"	   print a helpful message
