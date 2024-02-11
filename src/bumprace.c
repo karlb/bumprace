@@ -59,8 +59,7 @@
        int final=1,fullscreen=1,pageflip=0,sound=1,precision=10,fps=0,particle=1,mode,dofadeout=1,levelset=0;
 
 #ifdef NET
-       int client=0,Skt=0,Port=7664;
-       //struct protoent *protoent;
+       int client=0,skt=0,port=7664;
        struct sockaddr_in client_address, server_address;
        char* Ip;
 #endif
@@ -944,7 +943,7 @@ void ReadCommandLine(char *argv[])
 #ifdef NET
     if ( (!strcmp(argv[i],"--server")) || (!strcmp(argv[i],"-S")) ){client=1;} else
     if ( ((!strcmp(argv[i],"--client"))||(!strcmp(argv[i],"-c")) ) && (argv[++i]) ){Ip = argv[i];client=2;} else
-    if ( ((!strcmp(argv[i],"--port")) || (!strcmp(argv[i],"-p"))) && (argv[++i]) ){Port = atoi(argv[i]);} else
+    if ( ((!strcmp(argv[i],"--port")) || (!strcmp(argv[i],"-p"))) && (argv[++i]) ){port = atoi(argv[i]);} else
 #endif//NET
     if ((strcmp(argv[i],"--help")==0)||(strcmp(argv[i],"-h")==0)) TextHelp(argv);
     else  {
@@ -1178,7 +1177,7 @@ int main(int argc, char *argv[])
 //intialisation
   ReadCommandLine(argv);
 #ifdef NET
-if (client && (!(Skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
+if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
     perror("net init fault");
     exit(EXIT_FAILURE);
 }
@@ -1270,10 +1269,10 @@ if (client && (!(Skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
     if (client == 1){// server
       memset((char *) &server_address, 0, sizeof(server_address));
       server_address.sin_family = AF_INET;
-      server_address.sin_port = htons(Port);
+      server_address.sin_port = htons(port);
       playernum=2;
       int size =sizeof(client_address);
-      if (bind(Skt, (struct sockaddr*) &server_address, sizeof(server_address)) == -1){
+      if (bind(skt, (struct sockaddr*) &server_address, sizeof(server_address)) == -1){
         perror("failed Bind\n");
         exit(EXIT_FAILURE);
       }
@@ -1284,7 +1283,7 @@ if (client && (!(Skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
       playernum=2;
       memset((char *) &client_address, 0, sizeof(client_address));
       client_address.sin_family = AF_INET;
-      client_address.sin_port = htons(Port);
+      client_address.sin_port = htons(port);
       client_address.sin_addr.s_addr = inet_addr(Ip);
       ClientGameInit();
       // disable user 0 controls
@@ -1350,7 +1349,7 @@ if (client && (!(Skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
   Mix_FadeOutMusic(1000);
 #endif
 #ifdef NET
-  close(Skt);
+  close(skt);
 #endif// NET
   free_memory();
   printf("Awaiting SDL_Quit()\n");

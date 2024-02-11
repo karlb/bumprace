@@ -6,7 +6,7 @@
 #include "bumprace.h"
 
 extern struct sockaddr_in client_address, server_address;
-extern int Skt, levelnum, mode;
+extern int skt, levelnum, mode;
 
 unsigned char *
 serializeInt(unsigned char *buffer, int value){
@@ -71,18 +71,18 @@ deSerializeLevelInit(unsigned char *buffer)
 void
 ServerGameInit(){
   int size = sizeof(client_address);
-  recvfrom(Skt, NULL, 0, 0, &client_address, (int*) &size);// wait for reply of client
+  recvfrom(skt, NULL, 0, 0, &client_address, (int*) &size);// wait for reply of client
   unsigned char buffer[GAMEINITSIZE];// since on stack fast easily acquired
   serializeLevelInit(buffer);
-  sendto(Skt, buffer, sizeof(buffer), 0, &client_address, size);
+  sendto(skt, buffer, sizeof(buffer), 0, &client_address, size);
 }
 
 void
 ClientGameInit(){
   int size = sizeof(server_address);
-  sendto(Skt, NULL, 0, 0, &client_address, sizeof(client_address));
+  sendto(skt, NULL, 0, 0, &client_address, sizeof(client_address));
   unsigned char buffer[GAMEINITSIZE];
-  if (recvfrom(Skt, buffer, sizeof(buffer), 0, &server_address, &size) < 0)
+  if (recvfrom(skt, buffer, sizeof(buffer), 0, &server_address, &size) < 0)
     return;
   deSerializeLevelInit(buffer);
 }
@@ -114,7 +114,7 @@ deSerializeInGame(unsigned char *buffer, player* Players)
 void
 recState(struct sockaddr_in *address, int size, player* Player){
   unsigned char buffer[GAMESTATESIZE];
-    if (recvfrom(Skt, buffer, sizeof(buffer), 0, address, &size) < 0){
+    if (recvfrom(skt, buffer, sizeof(buffer), 0, address, &size) < 0){
       perror("recorded wrongly");
       return;
     }
@@ -127,7 +127,7 @@ void
 sendState(struct sockaddr_in *address, int size, player* Player){
   unsigned char buffer[GAMESTATESIZE];
   serializeInGame(buffer, Player);
-  if (sendto(Skt, buffer, sizeof(buffer), 0, address, size) == -1){
+  if (sendto(skt, buffer, sizeof(buffer), 0, address, size) == -1){
       perror("send fail");
       return;
   }
