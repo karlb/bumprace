@@ -925,7 +925,7 @@ void TextHelp(char *argv[])
 }
 
 #ifdef NET
-inline void portfail(void) {
+void portfail(void) {
 	    puts("you need to supply the port with -P port");
 	    exit(EXIT_FAILURE);
 }
