@@ -37,9 +37,6 @@ int UndoCircle (SDL_Surface *Surface, Sint32 X, Sint32 Y, Sint32 Rad, float Aspe
 // returns the flipped surface
 SDL_Surface *FlippedSurface(SDL_Surface *Surface);
 
-// returns the color value of a pixel
-Uint32 GetPixel (SDL_Surface *Surface, Sint32 X, Sint32 Y);
-
 void lock();
 void unlock();
 void fadeout();

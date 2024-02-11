@@ -175,40 +175,37 @@ void XCenteredString(SDL_Surface *Surface, int y, char *text)
 
 void SFont_InternalInput( SDL_Surface *Dest, SFont_FontInfo *Font, int x, int y, int PixelWidth, char *text)
 {
-  /*
     SDL_Event event;
     int ch=-1,blink=0;
     long blinktimer=0;
     SDL_Surface *Back;
     SDL_Rect rect;
-    SDLKey sym;
+    SDL_Scancode sym;
     int previous;
 //    int ofs=(text[0]-33)*2+1;
 //    int leftshift=(Font->CharPos[ofs]-Font->CharPos[ofs-1])/2;
     
-    Back = SDL_AllocSurface(Dest->flags,
-    			    Dest->w,
-    			    Font->h,
-    			    Dest->format->BitsPerPixel,
-    			    Dest->format->Rmask,
-    			    Dest->format->Gmask,
-			    Dest->format->Bmask, 0);
+    /* Back = SDL_AllocSurface(Dest->flags, */
+    /* 			    Dest->w, */
+    /* 			    Font->h, */
+    /* 			    Dest->format->BitsPerPixel, */
+    /* 			    Dest->format->Rmask, */
+    /* 			    Dest->format->Gmask, */
+			    /* Dest->format->Bmask, 0); */
     rect.x=0;
     rect.y=y;
     rect.w=Dest->w;
     rect.h=Font->Surface->h;
     SDL_BlitSurface(Dest, &rect, Back, NULL);
     PutString2(Dest,Font,x,y,text);
-    SDL_UpdateRects(Dest, 1, &rect);
+    Update();
         
     // start input
-    previous=SDL_EnableUNICODE(1);
     blinktimer=SDL_GetTicks();
     while (ch!=SDLK_RETURN) {
 		printf("%d\n", ch);
 		printf("%s\n", text);
 		if (event.type == SDL_KEYDOWN) {
-			ch = event.key.keysym.unicode;
 			sym = event.key.keysym.sym;
 			if (((ch>31)||(sym==SDLK_BACKSPACE)) && (ch<128)) {
 				if ((sym==SDLK_BACKSPACE)&&(strlen(text)>0))
@@ -218,7 +215,7 @@ void SFont_InternalInput( SDL_Surface *Dest, SFont_FontInfo *Font, int x, int y,
 				if (SFont_TextWidth2(Font,text)>PixelWidth) text[strlen(text)-1]='\0';
 				SDL_BlitSurface( Back, NULL, Dest, &rect);
 				PutString2(Dest, Font, x, y, text);
-				SDL_UpdateRects(Dest, 1, &rect);
+				Update();
 				//		printf("%s ## %d\n",text,strlen(text));
 				SDL_WaitEvent(&event);
 			}
@@ -228,13 +225,11 @@ void SFont_InternalInput( SDL_Surface *Dest, SFont_FontInfo *Font, int x, int y,
 			blinktimer=SDL_GetTicks()+500;
 			if (blink) {
 				PutString2(Dest, Font, x+SFont_TextWidth2(Font,text), y, "|");
-				SDL_UpdateRects(Dest, 1, &rect);
-				//		SDL_UpdateRect(Dest, x+SFont_TextWidth2(Font,text), y, SFont_TextWidth2(Font,"|"), Font->Surface->h);
+				Update();
 			} else {
 				SDL_BlitSurface( Back, NULL, Dest, &rect);
 				PutString2(Dest, Font, x, y, text);
-				SDL_UpdateRects(Dest, 1, &rect);
-				//		SDL_UpdateRect(Dest, x-(Font->CharPos[ofs]-Font->CharPos[ofs-1])/2, y, PixelWidth, Font->Surface->h);
+				Update();
 			}
 		}
 		SDL_Delay(1);
@@ -242,8 +237,6 @@ void SFont_InternalInput( SDL_Surface *Dest, SFont_FontInfo *Font, int x, int y,
     }
     text[strlen(text)]='\0';
     SDL_FreeSurface(Back);
-    SDL_EnableUNICODE(previous);  //restore the previous state
-*/
 }
 
 void SFont_Input2( SDL_Surface *Dest, SFont_FontInfo *Font, int x, int y, int PixelWidth, char *text)
