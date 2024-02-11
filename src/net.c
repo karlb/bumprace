@@ -7,6 +7,7 @@
 
 extern struct sockaddr_in client_address, server_address;
 extern int skt, levelnum, mode;
+extern player user[MAX_PLAYER_NUM];
 
 unsigned char *
 serializeInt(unsigned char *buffer, int value){
@@ -56,6 +57,8 @@ serializeLevelInit(unsigned char *buffer)
 {
     buffer = serializeInt(buffer, levelnum);
     buffer = serializeInt(buffer, mode);
+    buffer = serializeInt(buffer, user[0].racernum);
+    buffer = serializeInt(buffer, user[1].racernum);
     return buffer;
 }
 
@@ -64,15 +67,17 @@ deSerializeLevelInit(unsigned char *buffer)
 {
     buffer = deSerializeInt(buffer, &levelnum);
     buffer = deSerializeInt(buffer, &mode);
+    buffer = deSerializeInt(buffer, &(user[0].racernum));
+    buffer = deSerializeInt(buffer, &(user[1].racernum));
     return buffer;
 }
 
-#define GAMEINITSIZE 8
+#define GAMEINITSIZE 16
 void
 ServerGameInit(){
   int size = sizeof(client_address);
   recvfrom(skt, NULL, 0, 0, &client_address, (int*) &size);// wait for reply of client
-  unsigned char buffer[GAMEINITSIZE];// since on stack fast easily acquired
+  unsigned char buffer[GAMEINITSIZE];
   serializeLevelInit(buffer);
   sendto(skt, buffer, sizeof(buffer), 0, &client_address, size);
 }
@@ -82,8 +87,10 @@ ClientGameInit(){
   int size = sizeof(server_address);
   sendto(skt, NULL, 0, 0, &client_address, sizeof(client_address));
   unsigned char buffer[GAMEINITSIZE];
-  if (recvfrom(skt, buffer, sizeof(buffer), 0, &server_address, &size) < 0)
-    return;
+  if (recvfrom(skt, buffer, sizeof(buffer), 0, &server_address, &size) < 0){
+      perror("error: Server did not respond");
+      exit(EXIT_FAILURE);
+  }
   deSerializeLevelInit(buffer);
 }
 
@@ -133,13 +140,20 @@ sendState(struct sockaddr_in *address, int size, player* Player){
   }
 }
 
+void
+wrongip(){
+    puts("you need to supply the server address with -c ip.v4.adr.ess");
+    exit(EXIT_FAILURE);
+}
+
 uint32_t
 inet_addr(char *string)
 {
     int a, b, c, d;
     char arr[4];
-    sscanf(string, "%d.%d.%d.%d", &a, &b, &c, &d);
+    int res = sscanf(string, "%d.%d.%d.%d", &a, &b, &c, &d);
+    if (res != 4) wrongip();
     arr[0] = a;arr[1] = b; arr[2] = c; arr[3] = d;
     return *(uint32_t *)arr;
 }
-#endif
+#endif // NET

@@ -61,7 +61,7 @@
 #ifdef NET
        int client=0,skt=0,port=7664;
        struct sockaddr_in client_address, server_address;
-       char* Ip;
+       uint32_t ip;
 #endif
 
        const int NUMBER_OF_LEVELS[2]={21,9};
@@ -917,12 +917,19 @@ void TextHelp(char *argv[])
 #ifdef NET
     puts("  [-S,| --server]             run as server");
     puts("  [-c,| --client]             client to server specified after flag");
-    puts("  [-p,| --port]               specify the port to connect on (default=7664)");
+    puts("  [-P,| --port]               specify the port to connect on (default=7664)");
 #endif
     puts("  [-h,| --help]               this text\n");
     
     exit(0);
 }
+
+#ifdef NET
+inline void portfail(void) {
+	    puts("you need to supply the port with -P port");
+	    exit(EXIT_FAILURE);
+}
+#endif //NET
 
 void ReadCommandLine(char *argv[])
 {
@@ -941,9 +948,16 @@ void ReadCommandLine(char *argv[])
     if ((strcmp(argv[i],"--levelset")==0)&&(argv[i+1])) 
       {i++;levelset=atoi(argv[i]);printf("Levelset is set to %d\n",levelset);} else
 #ifdef NET
-    if ( (!strcmp(argv[i],"--server")) || (!strcmp(argv[i],"-S")) ){client=1;} else
-    if ( ((!strcmp(argv[i],"--client"))||(!strcmp(argv[i],"-c")) ) && (argv[++i]) ){Ip = argv[i];client=2;} else
-    if ( ((!strcmp(argv[i],"--port")) || (!strcmp(argv[i],"-p"))) && (argv[++i]) ){port = atoi(argv[i]);} else
+    if ( (!strcmp(argv[i],"--server"))||(!strcmp(argv[i],"-S")) ){client=1;} else
+    if ( (!strcmp(argv[i],"--client"))||(!strcmp(argv[i],"-c")) ) { 
+	client=2; 
+	if (!argv[++i]) wrongip();
+	ip = inet_addr(argv[i]); } else
+    if ( (!strcmp(argv[i],"--port"))||(!strcmp(argv[i],"-P")) ){
+	if (!argv[++i]) portfail();
+	port=atoi(argv[i]);
+	if (!port) portfail();
+    } else
 #endif//NET
     if ((strcmp(argv[i],"--help")==0)||(strcmp(argv[i],"-h")==0)) TextHelp(argv);
     else  {
@@ -1204,7 +1218,7 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
   sprintf(text,"%s/font.scl",DATAPATH);
   Font=LoadImage("font.png",3);
   InitFont(Font);
-  if (final) StartText(i);
+  if (final && client != 2) StartText(i);
 //load data
   printf("** Loading Data **\n");
 #ifdef SOUND
@@ -1215,7 +1229,7 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
 #endif
   load_images();
   printf("** Main data loaded **\n");
-  if (final) {
+  if (final && client != 2) {
     SDL_Delay(3000);
     SDL_UpdateRect(Screen,50,380,700,90);
   }
@@ -1252,6 +1266,9 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
         Blit(100,0,selectp_pic[pl]);
         SDL_UpdateRect(Screen,0,0,0,0);
         SDL_PollEvent(&event);
+#ifdef NET
+	if (client != 2)
+#endif //NET
         SelectRacer();
         if (user[pl].racernum==4) help(); 
 	else if (user[pl].racernum==5) {ShowHiscore();SDL_WaitEvent(&event);}
@@ -1259,38 +1276,41 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
       }
     }
     printf("** Racer selected **\n");
+#ifdef NET
+    if (client == 1 && !mode){ puts("selected 1 player as server, disabling server"); playernum = 1; client = 0; }// if server set 1 player we disable the server and continue
+    if (client == 1){// server
+	memset((char *) &server_address, 0, sizeof(server_address));
+	server_address.sin_family = AF_INET;
+    	server_address.sin_port = htons(port);
+	playernum=2;
+	int size =sizeof(client_address);
+	if (bind(skt, (struct sockaddr*) &server_address, sizeof(server_address)) == -1){
+	    perror("failed Bind\n");
+	    exit(EXIT_FAILURE);
+	}
+	puts("waiting for client to connect");
+	ServerGameInit();
+       // disable user1 controls
+       user[1].up=0;user[1].down=0;user[1].left=0;user[1].right=0;user[1].extra=0;
+    } else if (client == 2){// client
+	memset((char *) &client_address, 0, sizeof(client_address));
+	client_address.sin_family = AF_INET;
+	client_address.sin_port = htons(port);
+	client_address.sin_addr.s_addr = ip;
+	playernum=2;
+	puts("trying to connect to server");
+	ClientGameInit();
+	// disable user 0 controls
+	user[1].up=user[0].up;user[1].down=user[0].down;user[1].left=user[0].left;user[1].right=user[0].right;user[1].extra=user[0].extra;
+	user[0].up=0;user[0].down=0;user[0].left=0;user[0].right=0;user[0].extra=0;
+    }
+#endif// NET
     for (pl=0;pl<playernum;pl++) load_racer();  
     printf("** Racer data loaded **\n");
     // set racer abilities
     time_bonus=user[0].extra_time+user[1].extra_time;
     if (mode!=0) time_bonus-=20;
     lifetime+=lifetime*time_bonus/100;
-#ifdef NET
-    if (client == 1){// server
-      memset((char *) &server_address, 0, sizeof(server_address));
-      server_address.sin_family = AF_INET;
-      server_address.sin_port = htons(port);
-      playernum=2;
-      int size =sizeof(client_address);
-      if (bind(skt, (struct sockaddr*) &server_address, sizeof(server_address)) == -1){
-        perror("failed Bind\n");
-        exit(EXIT_FAILURE);
-      }
-      ServerGameInit();
-      // disable user1 controls
-      user[1].up=0;user[1].down=0;user[1].left=0;user[1].right=0;user[1].extra=0;
-    } else if (client == 2){// client
-      playernum=2;
-      memset((char *) &client_address, 0, sizeof(client_address));
-      client_address.sin_family = AF_INET;
-      client_address.sin_port = htons(port);
-      client_address.sin_addr.s_addr = inet_addr(Ip);
-      ClientGameInit();
-      // disable user 0 controls
-      user[1].up=user[0].up;user[1].down=user[0].down;user[1].left=user[0].left;user[1].right=user[0].right;user[1].extra=user[1].extra;
-      user[0].up=0;user[0].down=0;user[0].left=0;user[0].right=0;user[0].extra=0;
-    }
-#endif// NET
     // start level
     while (!quit)
     {
