@@ -1218,7 +1218,10 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
   sprintf(text,"%s/font.scl",DATAPATH);
   Font=LoadImage("font.png",3);
   InitFont(Font);
-  if (final && client != 2) StartText(i);
+#ifdef NET
+  if (client != 2)
+#endif //NET
+  if (final) StartText(i);
 //load data
   printf("** Loading Data **\n");
 #ifdef SOUND
@@ -1229,7 +1232,10 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
 #endif
   load_images();
   printf("** Main data loaded **\n");
-  if (final && client != 2) {
+#ifdef NET
+  if (client != 2)
+#endif //NET
+  if (final) {
     SDL_Delay(3000);
     SDL_UpdateRect(Screen,50,380,700,90);
   }
