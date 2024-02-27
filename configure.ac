@@ -7,7 +7,7 @@ AC_CANONICAL_TARGET
 
 ######## Setup for automake
 NAME="bumprace"
-SDL_VERSION=1.1.5
+SDL_VERSION=2.0.14
 AM_INIT_AUTOMAKE($NAME, 1.5.3)
 
 ######## Check for tools
@@ -34,7 +34,7 @@ esac
 AC_SUBST(MATHLIB)
 
 ######## Check for SDL
-AM_PATH_SDL($SDL_VERSION,
+AM_PATH_SDL2($SDL_VERSION,
             :,
 	    AC_MSG_ERROR([*** SDL version $SDL_VERSION not found!])
 )
@@ -45,12 +45,12 @@ AC_CHECK_LIB(jpeg, main, , AC_MSG_ERROR(Your system is missing libjpeg!))
 #Commented out because of a bug in the SuSE 6.2
 #AC_CHECK_LIB(png, main, , AC_MSG_ERROR(Your system is missing libpng!))
 
-AC_CHECK_LIB(SDL_mixer, main, SOUND="-lSDL_mixer";CFLAGS="$CFLAGS -DSOUND")
-AC_CHECK_LIB(SDL_image, main, , AC_MSG_ERROR(Your system is missing libSDL_image!))
+AC_CHECK_LIB(SDL2_mixer, main, SOUND="-lSDL2_mixer";CFLAGS="$CFLAGS -DSOUND")
+AC_CHECK_LIB(SDL2_image, main, , AC_MSG_ERROR(Your system is missing libSDL_image!))
 
 ######## Set compiler flags and libraries
 CFLAGS="$CFLAGS $SDL_CFLAGS -DDATADIR=\\\"$datadir/bumprace\\\""
-LIBS="$LIBS $SDL_LIBS -lSDL_image $SOUND -lz -lSDL"
+LIBS="$LIBS $SDL_LIBS $SOUND"
 
 ######## Check for headers
 

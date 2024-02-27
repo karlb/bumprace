@@ -2,6 +2,7 @@
 #define backbuffer BackBuffer
 
 extern SDL_Surface *Screen,*BackBuffer,*fadebuffer;
+extern SDL_Renderer *sdlRenderer;
 extern SDL_Rect blitrect;
 extern char DATAPATH[200];
 
@@ -35,9 +36,6 @@ int UndoCircle (SDL_Surface *Surface, Sint32 X, Sint32 Y, Sint32 Rad, float Aspe
 
 // returns the flipped surface
 SDL_Surface *FlippedSurface(SDL_Surface *Surface);
-
-// returns the color value of a pixel
-Uint32 GetPixel (SDL_Surface *Surface, Sint32 X, Sint32 Y);
 
 void lock();
 void unlock();

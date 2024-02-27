@@ -68,7 +68,7 @@
                    *mode_select_pic[4], *selector_pic, *selectp_pic[2],
 		   *Font,*laser_pic[9];
      //event handling  
-       SDL_Event event;  Uint8 *keys;
+       SDL_Event event;  const Uint8 *keys;
      //game states
        int endgame=0,dontshow=0,levelnum=0,quit=0,already=0,laser_state;
      //level vars
@@ -111,7 +111,7 @@ void timing()
   average_speed=time_since_start/frame_count;
   //printf("gamespeed: %f    average: %f \n",game_speed,average_speed);
   lifetime-=game_speed;
-  if ( keys[SDLK_ESCAPE] == SDL_PRESSED ) 
+  if ( keys[SDL_SCANCODE_ESCAPE] == SDL_PRESSED ) 
     {quit=1;endgame=1;}  
   frame_count++;
   frames_per_second=frame_count*1000/((SDL_GetTicks()-count_start)+1);
@@ -321,7 +321,7 @@ void kollision()  //calcualtes all collisions
         reblit_back.h=fore[5]->h; 
         BlitPart(0,0,back,reblit_back);
 	SDL_BlitSurface( back, &reblit_back, backbuffer, &reblit_back );
-        if (!fullscreen) {SDL_UpdateRects(Screen,1,&reblit_back);}    
+	Update();
       }
 //laser
       if ((map[levelnum][y][x]==7)&&((user[pl].realx+24>x*40)&&(user[pl].realx<x*40+32)&&(user[pl].realy+24>y*40)&&(user[pl].realy<y*40+32)))
@@ -395,7 +395,7 @@ void HandleRacer() //reads keys and sets new coordinates
     accel_speed=400000/(game_speed/precision);
 
     SDL_PollEvent(&event);
-    keys = SDL_GetKeyState(NULL);
+    keys = SDL_GetKeyboardState(NULL);
     if ( keys[user[pl].up] == SDL_PRESSED ) {
       thrust(1);
     }
@@ -455,7 +455,6 @@ void UndrawLaser(int update)
         src_rect.h=40;
         BlitPart(x*40,y*40,backbuffer,src_rect);
 //        SDL_BlitSurface(back , &src_rect , backbuffer, &src_rect);
-	if (update) SDL_UpdateRect(Screen,x*40,y*40,40,40);
       }
     }
   } 
@@ -476,7 +475,6 @@ void DrawLaser()
 	Blit(x*40   ,y*40,laser_pic[abrand(0,8)]);
 	Blit(x*40+15,y*40,laser_pic[abrand(0,8)]);
 	Blit(x*40+30,y*40,laser_pic[abrand(0,8)]);
-	SDL_UpdateRect(Screen,x*40,y*40,40,40); 
       }
     }
   } 
@@ -685,7 +683,6 @@ void blit_lifetime()
     timerect.w=110;
     timerect.h=10;
     SDL_BlitSurface(Screen,&timerect,backbuffer,&timerect);
-    if (!fullscreen) {SDL_UpdateRects(Screen,1,&timerect);}    
   }
   else
   {
@@ -708,7 +705,6 @@ void blit_lifetime()
       timerect.y=infoy*40;
       timerect.w=110;
       timerect.h=38;
-      if (!fullscreen) {SDL_UpdateRects(Screen,1,&timerect);}    
       SDL_BlitSurface(Screen,&timerect,backbuffer,&timerect);
     }
   }    
@@ -750,7 +746,6 @@ void HandleShots()
     if ((shot[i].x<=-shot_pic[0]->w)||(shot[i].x>=800)
        ||(shot[i].y<=-shot_pic[0]->h)||(shot[i].y>=600))
        {
-         SDL_UpdateRects( Screen, 1, &shot[i].oldrect );
          for (i2=i;i2<shotnum-1;i2++)
 	   shot[i2]=shot[i2+1];
 	 shotnum--;
@@ -976,7 +971,7 @@ void NextStage()
   XCenteredString(Screen, 390, text);
   levels_completed=0;
   lifetime=800000-(Stage-1)*70000;
-  SDL_UpdateRect(Screen,0,0,0,0);
+  Update();
   SDL_EventState(SDL_KEYUP, SDL_ENABLE);
   SDL_EventState(SDL_KEYDOWN, SDL_ENABLE);
   SDL_WaitEvent(&event);
@@ -1004,8 +999,6 @@ void nextlevel() //selects the next level at random
     levelnum=abrand(0,NUMBER_OF_LEVELS[levelset]-1);
   }
   if ((levels_completed==4)&&(mode!=1)) NextStage();
-  sprintf(text,"BumpRace: Level #%d",levelnum);
-  SDL_WM_SetCaption(text,"BumpRace");
   Score+=20;
 }
 
@@ -1057,7 +1050,7 @@ void InitLevel()
     last_lifetime=0;
     blit_lifetime();
     SDL_BlitSurface(Screen, NULL, backbuffer, NULL);
-    SDL_UpdateRect(Screen,0,0,0,0);
+    SDL_RenderPresent(sdlRenderer);
   } 
   SDL_EventState(SDL_KEYUP, SDL_ENABLE);                                  
   SDL_EventState(SDL_KEYDOWN, SDL_ENABLE);                                  
@@ -1074,11 +1067,11 @@ void StartText()
   PutString(Screen,170, 424, "This is free software, and you are welcome to");
   PutString(Screen,170, 446, "redistribute it under certain conditions;");
   PutString(Screen,170, 468, "see COPYING for details.");
-  SDL_UpdateRect(Screen,50,380,700,90);
+  Update();
   rect.x=50;
   rect.y=380;
   rect.w=700;
-  rect.h=90;
+  rect.h=220;
   SDL_FillRect(Screen,&rect,0);
 }
 
@@ -1106,7 +1099,7 @@ void score()
   if (mode==1) {
     Blit(0,0,back);
     ScoreText();
-    SDL_UpdateRect(Screen,0,0,0,0); 
+    Update();
     SDL_EventState(SDL_KEYUP, SDL_ENABLE);
     SDL_EventState(SDL_KEYDOWN, SDL_ENABLE);
     SDL_WaitEvent(&event);
@@ -1156,22 +1149,21 @@ int main(int argc, char *argv[])
 #ifdef SOUND
   if (sound) {InitSound();}
 #endif
-  init_SDL();
+  init_SDL("BumpRace");
+  SDL_PollEvent(&event);
   SDL_ShowCursor(0);
-  SDL_WM_SetCaption("BumpRace","BumpRace");
   printf("** Video mode set **\n");
   srand( (unsigned) time(NULL) );    
   SDL_EventState(SDL_MOUSEMOTION, SDL_IGNORE);                                  
   fullscreen=0;  //activate update_rects
-  SDL_EnableUNICODE(1);
-  user[0].up=SDLK_UP;user[0].down=SDLK_DOWN;user[0].left=SDLK_LEFT;user[0].right=SDLK_RIGHT;user[0].extra=SDLK_RCTRL;
-  user[1].up=SDLK_w;user[1].down=SDLK_s;user[1].left=SDLK_a;user[1].right=SDLK_d;user[1].extra=SDLK_LCTRL;
+  user[0].up=SDL_SCANCODE_UP;user[0].down=SDL_SCANCODE_DOWN;user[0].left=SDL_SCANCODE_LEFT;user[0].right=SDL_SCANCODE_RIGHT;user[0].extra=SDL_SCANCODE_RCTRL;
+  user[1].up=SDL_SCANCODE_W;user[1].down=SDL_SCANCODE_S;user[1].left=SDL_SCANCODE_A;user[1].right=SDL_SCANCODE_D;user[1].extra=SDL_SCANCODE_LCTRL;
   ReadOptions();
   ReadOptions();
 //show title screen
   title_pic=LoadImage("title.gif",0);
   Blit(0,0,title_pic);
-  SDL_UpdateRect(Screen,0,0,0,0);
+  Update();
   sprintf(text,"%s/font.scl",DATAPATH);
   Font=LoadImage("font.png",3);
   InitFont(Font);
@@ -1188,7 +1180,7 @@ int main(int argc, char *argv[])
   printf("** Main data loaded **\n");
   if (final) {
     SDL_Delay(3000);
-    SDL_UpdateRect(Screen,50,380,700,90);
+    Update();
   }
   // select game mode
   Menu();
@@ -1197,7 +1189,6 @@ int main(int argc, char *argv[])
     ResetLevels();
     levelnum=abrand(0,NUMBER_OF_LEVELS[levelset]-1);
     sprintf(text,"BumpRace: Level #%d",levelnum);
-    SDL_WM_SetCaption(text,"BumpRace");
     for (pl=0;pl<playernum;pl++) {user[pl].racernum=0;user[pl].points=0;}
     lifetime=800000;Score=0;levels_completed=0;Stage=1;
     for (i=0;i<=NUMBER_OF_LEVELS[levelset];i++)
@@ -1210,7 +1201,7 @@ int main(int argc, char *argv[])
       {
         BlitMenu();
         Blit(100,0,selectp_pic[pl]);
-        SDL_UpdateRect(Screen,0,0,0,0);
+	Update();
         SDL_PollEvent(&event);
         SelectRacer();
         if (user[pl].racernum==4) help(); 

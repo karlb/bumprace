@@ -1,26 +1,18 @@
 #include "bumprace.h"
 #include <math.h>
 
+void clear(SDL_Surface *surface) {
+  SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 0, 0, 0));
+}
+
 void clear_screen()
 {
-  SDL_Rect fillrect;
-
-  fillrect.x=0;
-  fillrect.y=0;
-  fillrect.w=800;
-  fillrect.h=600;
-  SDL_FillRect(Screen,&fillrect,0);
+  clear(Screen);
 }
 
 void clear_bb()
 {
-  SDL_Rect fillrect;
-
-  fillrect.x=0;
-  fillrect.y=0;
-  fillrect.w=800;
-  fillrect.h=600;
-  SDL_FillRect(backbuffer,&fillrect,0);
+  clear(backbuffer);
 }
 
 //************************  HELP MENU  ***********************
@@ -69,13 +61,13 @@ void help()  //prints the help & credits screeen
   PutString(Screen, 350, 510, "modified MikMod (for SDL)");  
 
   PutString(Screen, 40, 580, "You can find the BumpRace web page at: http://www.linux-games.com");
-  SDL_UpdateRect(Screen,0,0,0,0);
+  Update();
   SDL_WaitEvent(&event);
   SDL_WaitEvent(&event);
   clear_screen();
   BlitMenu();
   Blit(100,0,selectp_pic[pl]);
-  SDL_UpdateRect(Screen,0,0,0,0);
+  Update();
 }
 
 // ********************************  Main Menu  *****************
@@ -133,7 +125,7 @@ void FadeSelectorOut(int y, int mode)
   SDL_FillRect(Screen,&dstrect,0);
   dstrect.x=250+mode*250;dstrect.y=y;dstrect.w=10;dstrect.h=100;
   SDL_FillRect(Screen,&dstrect,0);
-  SDL_UpdateRect(Screen,40+mode*250,y-10,220,120);
+  Update();
 }
 
 void FadeSelectorIn(int y, int mode)
@@ -187,20 +179,20 @@ void Menu()
   }
   mode=0;update=1;
   SDL_PollEvent(&event);
-  keys = SDL_GetKeyState(NULL);
-  while ( keys[SDLK_RETURN]!=SDL_PRESSED)
+  keys = SDL_GetKeyboardState(NULL);
+  while ( keys[SDL_SCANCODE_RETURN]!=SDL_PRESSED)
   {
     if (update) FadeSelectorIn(y,mode);
     SDL_PollEvent(&event);
-    keys = SDL_GetKeyState(NULL);
+    keys = SDL_GetKeyboardState(NULL);
     update=0;
-    if (( keys[SDLK_RIGHT] == SDL_PRESSED )&&(mode<2))
+    if (( keys[SDL_SCANCODE_RIGHT] == SDL_PRESSED )&&(mode<2))
       {FadeSelectorOut(y,mode);mode++;update=1;}
-    if (( keys[SDLK_LEFT] == SDL_PRESSED )&&(mode>0)&&(mode<3))
+    if (( keys[SDL_SCANCODE_LEFT] == SDL_PRESSED )&&(mode>0)&&(mode<3))
       {FadeSelectorOut(y,mode);mode--;update=1;}
-    if (( keys[SDLK_DOWN] == SDL_PRESSED )&&(mode<3))
+    if (( keys[SDL_SCANCODE_DOWN] == SDL_PRESSED )&&(mode<3))
       {FadeSelectorOut(y,mode);mode=3;update=1;}
-    if (( keys[SDLK_UP] == SDL_PRESSED )&&(mode==3))
+    if (( keys[SDL_SCANCODE_UP] == SDL_PRESSED )&&(mode==3))
       {FadeSelectorOut(y+120,1);mode=1;update=1;}
     SDL_WaitEvent(&event);
   }
@@ -252,38 +244,33 @@ void load_racer() //loads the racer data
 
 void SelectRacer()  //menu for racer selection
 {  
-  SDL_Rect fillrect;
-  
-  fillrect.x=50;
-  fillrect.y=140;
-  fillrect.w=700;
-  fillrect.h=430;
   SDL_PollEvent(&event);
-  keys = SDL_GetKeyState(NULL);
-  while (keys[SDLK_RETURN]==SDL_PRESSED)  
+  keys = SDL_GetKeyboardState(NULL);
+  while (keys[SDL_SCANCODE_RETURN]==SDL_PRESSED)  
   {
     SDL_PollEvent(&event);
-    keys = SDL_GetKeyState(NULL);
+    keys = SDL_GetKeyboardState(NULL);
   }
-  while (keys[SDLK_RETURN]!=SDL_PRESSED)  
+  while (keys[SDL_SCANCODE_RETURN]!=SDL_PRESSED)  
   {    
     SDL_PollEvent(&event);
-    keys = SDL_GetKeyState(NULL);
+    keys = SDL_GetKeyboardState(NULL);
     while (!SDL_WaitEvent(&event))
     {
       SDL_PollEvent(&event);
-      keys = SDL_GetKeyState(NULL);
+      keys = SDL_GetKeyboardState(NULL);
     }
-    if (( keys[SDLK_RIGHT] == SDL_PRESSED )&&(user[pl].racernum<5))
+    SDL_PumpEvents();
+    if (( keys[SDL_SCANCODE_RIGHT] == SDL_PRESSED )&&(user[pl].racernum<5))
       {user[pl].racernum++;}
-    if (( keys[SDLK_LEFT] == SDL_PRESSED  )&&(user[pl].racernum>0))
+    if (( keys[SDL_SCANCODE_LEFT] == SDL_PRESSED  )&&(user[pl].racernum>0))
       {user[pl].racernum--;}
-    if (( keys[SDLK_DOWN] == SDL_PRESSED  )&&(user[pl].racernum<3))
+    if (( keys[SDL_SCANCODE_DOWN] == SDL_PRESSED  )&&(user[pl].racernum<3))
       {user[pl].racernum+=3;}
-    if (( keys[SDLK_UP] == SDL_PRESSED    )&&(user[pl].racernum>2))
+    if (( keys[SDL_SCANCODE_UP] == SDL_PRESSED    )&&(user[pl].racernum>2))
       {user[pl].racernum-=3;}
       if (user[pl].racernum>5) user[pl].racernum=5;
     BlitMenu();
-    SDL_UpdateRects(Screen,1,&fillrect);
+    Update();
   }
 }
