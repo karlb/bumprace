@@ -82,16 +82,17 @@ ServerGameInit(){
   sendto(skt, buffer, sizeof(buffer), 0, &client_address, size);
 }
 
-void
+int
 ClientGameInit(){
   int size = sizeof(server_address);
   sendto(skt, NULL, 0, 0, &client_address, sizeof(client_address));
   unsigned char buffer[GAMEINITSIZE];
   if (recvfrom(skt, buffer, sizeof(buffer), 0, &server_address, &size) < 0){
-      perror("error: Server did not respond");
-      exit(EXIT_FAILURE);
+      perror("error: Server did not respond, retrying");
+      return 1;
   }
   deSerializeLevelInit(buffer);
+  return 0;
 }
 
 unsigned char * // for sending host controlled player
