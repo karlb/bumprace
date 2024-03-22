@@ -115,9 +115,9 @@ void ClientWait(int retries)
     snprintf(buffer, NI_MAXSERV, "%d", port);
     PutString(Screen, 45, 15, buffer);
 
-    PutString(Screen, 0, 45, "number retries left:");
+    PutString(Screen, 0, 30, "number retries left:");
     snprintf(buffer, NI_MAXSERV, "%d", retries);
-    PutString(Screen, 200, 45, buffer);
+    PutString(Screen, 200, 30, buffer);
 
     SDL_UpdateRect(Screen,0,0,0,0);
 }

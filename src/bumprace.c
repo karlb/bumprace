@@ -1273,7 +1273,8 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
         SDL_UpdateRect(Screen,0,0,0,0);
         SDL_PollEvent(&event);
 #ifdef NET
-	if (client != 2)
+	if (client)
+            playernum = 1;
 #endif //NET
         SelectRacer();
         if (user[pl].racernum==4) help(); 
@@ -1283,7 +1284,12 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
     }
     printf("** Racer selected **\n");
 #ifdef NET
-    if (client == 1 && !mode){ puts("selected 1 player as server, disabling server"); playernum = 1; client = 0; }// if server set 1 player we disable the server and continue
+    if (client == 1 && !mode){ // if server set 1 player we disable the server and continue
+        puts("selected 1 player as server, disabling server"); 
+        playernum = 1; 
+        client = 0; 
+    }
+
     if (client == 1){// server
 	memset((char *) &server_address, 0, sizeof(server_address));
 	server_address.sin_family = AF_INET;
@@ -1299,23 +1305,32 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
 	ServerGameInit();
        // disable user1 controls
        user[1].up=0;user[1].down=0;user[1].left=0;user[1].right=0;user[1].extra=0;
+
     } else if (client == 2){// client
 	memset((char *) &client_address, 0, sizeof(client_address));
 	client_address.sin_family = AF_INET;
 	client_address.sin_port = htons(port);
 	client_address.sin_addr.s_addr = ip;
 	playernum=2;
+        user[1].racernum = user[0].racernum;// assign selected racer to user 1
         struct timeval timeout; 
-        timeout.tv_sec = 5; 
+        timeout.tv_sec = 3; 
         timeout.tv_usec = 0; 
         setsockopt(skt, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeout, sizeof(timeout));
-	puts("trying to connect to server");
+
         int retries=16;
+
         ClientWait(retries);
-        while (ClientGameInit())
-            ClientWait(retries--);
-	// disable user 0 controls
+        while (ClientGameInit()){
+            ClientWait(--retries);
+            if (!retries){
+                perror("Server could not be found, timed out\n");
+                exit(1);
+            }
+        }
+        // map user 0 to user 1
 	user[1].up=user[0].up;user[1].down=user[0].down;user[1].left=user[0].left;user[1].right=user[0].right;user[1].extra=user[0].extra;
+	// disable user 0 controls
 	user[0].up=0;user[0].down=0;user[0].left=0;user[0].right=0;user[0].extra=0;
     }
 #endif// NET

@@ -59,7 +59,7 @@ serializeLevelInit(unsigned char *buffer)
     buffer = serializeInt(buffer, levelnum);
     buffer = serializeInt(buffer, mode);
     buffer = serializeInt(buffer, user[0].racernum);
-    buffer = serializeInt(buffer, user[1].racernum);
+    //buffer = serializeInt(buffer, user[1].racernum);
     return buffer;
 }
 
@@ -69,16 +69,34 @@ deSerializeLevelInit(unsigned char *buffer)
     buffer = deSerializeInt(buffer, &levelnum);
     buffer = deSerializeInt(buffer, &mode);
     buffer = deSerializeInt(buffer, &(user[0].racernum));
-    buffer = deSerializeInt(buffer, &(user[1].racernum));
+    //buffer = deSerializeInt(buffer, &(user[1].racernum));
     return buffer;
 }
 
-#define GAMEINITSIZE 16
+unsigned char *
+serializeClientInit(unsigned char *buffer)
+{
+    buffer = serializeInt(buffer, user[1].racernum);
+    return buffer;
+}
+
+unsigned char *
+deSerializeClientInit(unsigned char *buffer)
+{
+    buffer = deSerializeInt(buffer, &user[1].racernum);
+    return buffer;
+}
+
+#define GAMEINITSIZE 12
+#define CGAMEINITSIZE 4
 void
 ServerGameInit(){
   int size = sizeof(client_address);
-  recvfrom(skt, NULL, 0, 0, &client_address, (int*) &size);// wait for reply of client
-  unsigned char buffer[GAMEINITSIZE];
+  unsigned char recbuffer[CGAMEINITSIZE], buffer[GAMEINITSIZE];
+
+  recvfrom(skt, recbuffer, sizeof(recbuffer), 0, &client_address, (int*) &size);// wait for reply of client
+  deSerializeClientInit(recbuffer);
+                                                                 
   serializeLevelInit(buffer);
   sendto(skt, buffer, sizeof(buffer), 0, &client_address, size);
 }
@@ -86,8 +104,10 @@ ServerGameInit(){
 int
 ClientGameInit(){
   int size = sizeof(server_address);
-  sendto(skt, NULL, 0, 0, &client_address, sizeof(client_address));
-  unsigned char buffer[GAMEINITSIZE];
+  unsigned char sendbuffer[CGAMEINITSIZE], buffer[GAMEINITSIZE];
+
+  serializeClientInit(sendbuffer);
+  sendto(skt, sendbuffer, sizeof(sendbuffer), 0, &client_address, sizeof(client_address));
   if (recvfrom(skt, buffer, sizeof(buffer), 0, &server_address, &size) < 0){
       perror("error: Server did not respond, retrying\n");
       return 1;
