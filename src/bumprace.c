@@ -1304,6 +1304,10 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
 	client_address.sin_port = htons(port);
 	client_address.sin_addr.s_addr = ip;
 	playernum=2;
+        struct timeval timeout; 
+        timeout.tv_sec = 5; 
+        timeout.tv_usec = 0; 
+        setsockopt(skt, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeout, sizeof(timeout));
 	puts("trying to connect to server");
         for (int i = 0; i < 16; i++) 
             if (!ClientGameInit()) 

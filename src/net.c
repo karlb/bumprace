@@ -88,10 +88,6 @@ ClientGameInit(){
   int size = sizeof(server_address);
   sendto(skt, NULL, 0, 0, &client_address, sizeof(client_address));
   unsigned char buffer[GAMEINITSIZE];
-  struct timeval timeout;
-  timeout.tv_sec = 1;
-  timeout.tv_usec = 0;
-  setsockopt(skt, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeout, sizeof(timeout));
   if (recvfrom(skt, buffer, sizeof(buffer), 0, &server_address, &size) < 0){
       perror("error: Server did not respond, retrying");
       return 1;
