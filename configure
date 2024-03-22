@@ -5064,7 +5064,7 @@ esac
 fi
 
 
-######## Set compiler flags and libraries
+######## Set compiler flags and libraries (remove -DNET for no networking support)
 CFLAGS="$CFLAGS -DNET $SDL_CFLAGS -DDATADIR=\\\"$datadir/bumprace\\\""
 LIBS="$LIBS $SDL_LIBS -lSDL_image $SOUND -lz -lSDL"
 

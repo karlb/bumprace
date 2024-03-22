@@ -1,7 +1,7 @@
 #ifdef NET
 #ifndef NET_H
 #define NET_H
-        void ClientGameInit();
+        int ClientGameInit();
         void ServerGameInit();
         void sendState(struct sockaddr_in *address, int size, player* Player);
         void recState(struct sockaddr_in *address, int size, player* Player);
