@@ -1310,11 +1310,10 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
         timeout.tv_usec = 0; 
         setsockopt(skt, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeout, sizeof(timeout));
 	puts("trying to connect to server");
-        for (int i = 0; i < 16; i++) 
-            if (!ClientGameInit()) 
-                break;
-            else 
-                sleep(1);// retry 16 times to connect
+        int retries=16;
+        ClientWait(retries);
+        while (ClientGameInit())
+            ClientWait(retries--);
 	// disable user 0 controls
 	user[1].up=user[0].up;user[1].down=user[0].down;user[1].left=user[0].left;user[1].right=user[0].right;user[1].extra=user[0].extra;
 	user[0].up=0;user[0].down=0;user[0].left=0;user[0].right=0;user[0].extra=0;

@@ -89,7 +89,7 @@ ClientGameInit(){
   sendto(skt, NULL, 0, 0, &client_address, sizeof(client_address));
   unsigned char buffer[GAMEINITSIZE];
   if (recvfrom(skt, buffer, sizeof(buffer), 0, &server_address, &size) < 0){
-      perror("error: Server did not respond, retrying");
+      perror("error: Server did not respond, retrying\n");
       return 1;
   }
   deSerializeLevelInit(buffer);

@@ -1,6 +1,14 @@
 #include "bumprace.h"
 #include <math.h>
 
+#ifdef NET
+#include <sys/socket.h>
+#include <netdb.h>
+
+extern int port;
+#endif // NET
+
+
 void clear_screen()
 {
   SDL_Rect fillrect;
@@ -81,13 +89,39 @@ void help()  //prints the help & credits screeen
 
 // ********************************  Server Wait Menu  *****************
 
+
+#ifdef NET
 void ServerWait()
 {
+    char buffer[NI_MAXSERV];
+
     clear_screen();
     PutString(Screen, 0, 0, "Server is waiting for client to connect");
-    PutString(Screen, 0, 15, "use ip a to get your ip to pass to your friend");
+    PutString(Screen, 0, 15, "use 'ip a' to get your ip to pass to your friend");
+    PutString(Screen, 0, 30, "port: ");
+    snprintf(buffer, NI_MAXSERV, "%d", port);
+    PutString(Screen, 45, 30, buffer);
     SDL_UpdateRect(Screen,0,0,0,0);
 }
+
+void ClientWait(int retries)
+{
+    char buffer[NI_MAXSERV];
+
+    clear_screen();
+
+    PutString(Screen, 0, 0, "Server is not responding");
+    PutString(Screen, 0, 15, "port: ");
+    snprintf(buffer, NI_MAXSERV, "%d", port);
+    PutString(Screen, 45, 15, buffer);
+
+    PutString(Screen, 0, 45, "number retries left:");
+    snprintf(buffer, NI_MAXSERV, "%d", retries);
+    PutString(Screen, 200, 45, buffer);
+
+    SDL_UpdateRect(Screen,0,0,0,0);
+}
+#endif //NET
 
 // ********************************  Main Menu  *****************
 
