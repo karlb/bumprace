@@ -79,6 +79,16 @@ void help()  //prints the help & credits screeen
   SDL_UpdateRect(Screen,0,0,0,0);
 }
 
+// ********************************  Server Wait Menu  *****************
+
+void ServerWait()
+{
+    clear_screen();
+    PutString(Screen, 0, 0, "Server is waiting for client to connect");
+    PutString(Screen, 0, 15, "use ip a to get your ip to pass to your friend");
+    SDL_UpdateRect(Screen,0,0,0,0);
+}
+
 // ********************************  Main Menu  *****************
 
 void PrepareMenu()

@@ -1294,7 +1294,8 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
 	    perror("failed Bind\n");
 	    exit(EXIT_FAILURE);
 	}
-	printf("waiting for client to connect");
+	printf("waiting for client to connect");// now make menu here
+        ServerWait();
 	ServerGameInit();
        // disable user1 controls
        user[1].up=0;user[1].down=0;user[1].left=0;user[1].right=0;user[1].extra=0;
