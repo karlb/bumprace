@@ -1242,10 +1242,12 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
   // select game mode
 #ifdef NET
   if (client!=2){// we play with 2 players online
-#endif
     Menu();
-#ifdef NET
   }
+  if (client)
+    playernum = 1;
+#else
+    Menu();
 #endif
   while (mode!=3)
   {
@@ -1272,10 +1274,6 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
         Blit(100,0,selectp_pic[pl]);
         SDL_UpdateRect(Screen,0,0,0,0);
         SDL_PollEvent(&event);
-#ifdef NET
-	if (client)
-            playernum = 1;
-#endif //NET
         SelectRacer();
         if (user[pl].racernum==4) help(); 
 	else if (user[pl].racernum==5) {ShowHiscore();SDL_WaitEvent(&event);}
