@@ -1,6 +1,14 @@
 #include "bumprace.h"
 #include <math.h>
 
+#ifdef NET
+#include <sys/socket.h>
+#include <netdb.h>
+
+extern int port;
+#endif // NET
+
+
 void clear_screen()
 {
   SDL_Rect fillrect;
@@ -45,28 +53,29 @@ void help()  //prints the help & credits screeen
   PutString(Screen, 350, 165, "Code:");
   PutString(Screen, 350, 180, "Karl Bartel (main code) <karl@karl.berlin>");
   PutString(Screen, 350, 195, "Lion Kimbro (particles) <SnowLion@sprynet.com>");
-  PutString(Screen, 350, 220, "Graphics:");
-  PutString(Screen, 350, 235, "Karl Bartel");
-  PutString(Screen, 500, 220, "Background:");
-  PutString(Screen, 500, 235, "Sweetie187");
+  PutString(Screen, 350, 210, "Tom Lauwers (networking)");
+  PutString(Screen, 350, 235, "Graphics:");
+  PutString(Screen, 350, 250, "Karl Bartel");
+  PutString(Screen, 500, 235, "Background:");
+  PutString(Screen, 500, 250, "Sweetie187");
 
-  PutString(Screen, 350, 265, "Packaging:");
-  PutString(Screen, 350, 280, "Christian T. Steigies (debian)"),
+  PutString(Screen, 350, 280, "Packaging:");
+  PutString(Screen, 350, 295, "Christian T. Steigies (debian)"),
 
-  PutString(Screen, 350, 305, "Music:");
-  PutString(Screen, 350, 320, "Alexandr Zhelanov");
-  PutString(Screen, 350, 335, "(soundcloud.com/alexandr-zhelanov)");
+  PutString(Screen, 350, 320, "Music:");
+  PutString(Screen, 350, 335, "Alexandr Zhelanov");
+  PutString(Screen, 350, 350, "(soundcloud.com/alexandr-zhelanov)");
 
-  PutString(Screen, 350, 365, "Sound Effects:");
-  PutString(Screen, 350, 380, "Retimer, NenadSimic, Little Robot Sound Factory");  
-  PutString(Screen, 350, 405, "Levels:");  
-  PutString(Screen, 350, 420, "Karl Bartel");  
-  PutString(Screen, 350, 435, "Stephan <emailme@enthralling.com>");  
+  PutString(Screen, 350, 380, "Sound Effects:");
+  PutString(Screen, 350, 395, "Retimer, NenadSimic, Little Robot Sound Factory");  
+  PutString(Screen, 350, 420, "Levels:");  
+  PutString(Screen, 350, 435, "Karl Bartel");  
+  PutString(Screen, 350, 450, "Stephan <emailme@enthralling.com>");  
 
-  PutString(Screen, 350, 465, "Libraries used:");  
-  PutString(Screen, 350, 480, "SDL by Sam Lantinga");  
-  PutString(Screen, 350, 495, "SFont by Karl Bartel");  
-  PutString(Screen, 350, 510, "modified MikMod (for SDL)");  
+  PutString(Screen, 350, 480, "Libraries used:");  
+  PutString(Screen, 350, 495, "SDL by Sam Lantinga");  
+  PutString(Screen, 350, 510, "SFont by Karl Bartel");  
+  PutString(Screen, 350, 525, "modified MikMod (for SDL)");  
 
   PutString(Screen, 40, 580, "You can find the BumpRace web page at: http://www.linux-games.com");
   SDL_UpdateRect(Screen,0,0,0,0);
@@ -77,6 +86,42 @@ void help()  //prints the help & credits screeen
   Blit(100,0,selectp_pic[pl]);
   SDL_UpdateRect(Screen,0,0,0,0);
 }
+
+// ********************************  Server Wait Menu  *****************
+
+
+#ifdef NET
+void ServerWait()
+{
+    char buffer[NI_MAXSERV];
+
+    clear_screen();
+    PutString(Screen, 0, 0, "Server is waiting for client to connect");
+    PutString(Screen, 0, 15, "use 'ip a' to get your ip to pass to your friend");
+    PutString(Screen, 0, 30, "port: ");
+    snprintf(buffer, NI_MAXSERV, "%d", port);
+    PutString(Screen, 45, 30, buffer);
+    SDL_UpdateRect(Screen,0,0,0,0);
+}
+
+void ClientWait(int retries)
+{
+    char buffer[NI_MAXSERV];
+
+    clear_screen();
+
+    PutString(Screen, 0, 0, "Server is not responding");
+    PutString(Screen, 0, 15, "port: ");
+    snprintf(buffer, NI_MAXSERV, "%d", port);
+    PutString(Screen, 45, 15, buffer);
+
+    PutString(Screen, 0, 30, "number retries left:");
+    snprintf(buffer, NI_MAXSERV, "%d", retries);
+    PutString(Screen, 200, 30, buffer);
+
+    SDL_UpdateRect(Screen,0,0,0,0);
+}
+#endif //NET
 
 // ********************************  Main Menu  *****************
 
