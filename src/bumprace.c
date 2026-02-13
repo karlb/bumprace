@@ -1221,7 +1221,7 @@ if (client && (!(skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) )) {
 #ifdef NET
   if (client != 2)
 #endif //NET
-  if (final) StartText(i);
+  if (final) StartText();
 //load data
   printf("** Loading Data **\n");
 #ifdef SOUND
