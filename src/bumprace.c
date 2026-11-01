@@ -542,11 +542,41 @@ void checks_common()
   }
 }
 
+/* Pump the SDL event queue while a message is on screen (otherwise Windows
+   marks the window as "Not responding"). Returns 1 when the player pressed
+   a key or a mouse button to skip the message. */
+static int MsgPumpEvents(void)
+{
+  SDL_Event ev;
+  int skip=0;
+  while (SDL_PollEvent(&ev)) {
+    if ((ev.type==SDL_KEYDOWN)||(ev.type==SDL_MOUSEBUTTONDOWN)||(ev.type==SDL_QUIT))
+      skip=1;
+  }
+  keys = SDL_GetKeyState(NULL);
+  return skip;
+}
+
+#define MSG_FADE_MS  500   /* fade-in of the message */
+#define MSG_TOTAL_MS 1500  /* the message is shown at most this long */
+#define MSG_GRACE_MS 200   /* ignore skip requests right at the start */
+
 void DisplayMsg(SDL_Surface *img, float speed)
 {
+  /* The old version faded with "i-=(SDL_GetTicks()-now)/2", but timing()
+     resets "now" every frame, so on a fast CPU the decrement was ~0 ms and
+     the fade (plus the following SDL_Delay) took many seconds, without
+     pumping any events. Now the fade and the hold are based on wall-clock
+     time, events are pumped every frame and any key/click skips it. */
+  Uint32 start=SDL_GetTicks(), elapsed=0, fade=(Uint32)(MSG_FADE_MS*speed);
+  int skip=0;
+
+  if (fade<1) fade=1;
+  SDL_EventState(SDL_KEYDOWN, SDL_ENABLE);
+  SDL_EventState(SDL_MOUSEBUTTONDOWN, SDL_ENABLE);
+  MsgPumpEvents();  /* discard events from before the message */
   Blit(400-img->w/2,250,img);
-  now=SDL_GetTicks();
-  for (i=255*speed;i>=0;i-=(float)(SDL_GetTicks()-now)/2)
+  while (elapsed<fade && !skip)
   {
     timing();
     SDL_SetAlpha(backbuffer,(SDL_SRCALPHA),255);
@@ -554,20 +584,31 @@ void DisplayMsg(SDL_Surface *img, float speed)
     HandleParticles();
     DisplayParticles();
     Blit(400-img->w/2,250,img);
-    SDL_SetAlpha(backbuffer,(SDL_SRCALPHA),(int)(i/speed));
+    SDL_SetAlpha(backbuffer,(SDL_SRCALPHA),255-(int)(255*elapsed/fade));
     SDL_BlitSurface(backbuffer,&blitrect,Screen,&blitrect);
     Update();
+    elapsed=SDL_GetTicks()-start;
+    if (MsgPumpEvents() && elapsed>MSG_GRACE_MS) skip=1;
   }
-  BlitToBB(400-img->w/2,250,img);
   SDL_SetAlpha(backbuffer,SDL_SRCALPHA,255);
-  while (NullParticle>0) {
+  BlitToBB(400-img->w/2,250,img);
+  Blit(400-img->w/2,250,img);
+  Update();
+  /* let the particles die out / hold the message, until the time is up */
+  while (elapsed<MSG_TOTAL_MS && !skip) {
     timing();
     UndrawParticles();
     HandleParticles();
     DisplayParticles();
     Update();
+    elapsed=SDL_GetTicks()-start;
+    if (MsgPumpEvents() && elapsed>MSG_GRACE_MS) skip=1;
   }
+  UndrawParticles();
+  NullParticle=0;
+  Update();
   SDL_SetAlpha(backbuffer,SDL_SRCALPHA,255);
+  DontReadKeys();  /* back to the state the callers expect */
 }
 
 void DrawExplosion()
@@ -589,7 +630,6 @@ void checks_1p()
 #endif
     DontReadKeys();
     DisplayMsg(pic_completed,1);
-    SDL_Delay(1000);
     endgame=1;
     lifetime+=(int)(150000*(1+(time_bonus)/100));
   }
@@ -605,7 +645,6 @@ void checks_1p()
     DrawExplosion();
     DrawExplosion();
     DisplayMsg(pic_crashed,1);
-    SDL_Delay(1000);
     endgame=1;
     fadeout();
   }
@@ -614,7 +653,6 @@ void checks_1p()
   {
     DontReadKeys();
     DisplayMsg(timeout_pic,1);
-    SDL_Delay(1000);
     endgame=1;
     quit=1;
     fadeout();
@@ -655,7 +693,6 @@ void checks_2p()
 #endif
         DontReadKeys();
         DisplayMsg(pic_completed,1);
-        SDL_Delay(1000);
         endgame=1;
         lifetime+=(int)(150000*(1+(time_bonus)/100));
       }

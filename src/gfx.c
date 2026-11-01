@@ -212,6 +212,7 @@ void fadeout()
 		rect.y = y;
 		SDL_FillRect(Screen, &rect, SDL_MapRGB(Screen->format, 0,0,0));
 		SDL_UpdateRects(Screen, 1, &rect);
+		SDL_PumpEvents();  /* keep the window responsive (Windows) */
 		if (time == SDL_GetTicks())
 			SDL_Delay(1);
 	}
