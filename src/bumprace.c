@@ -544,9 +544,10 @@ void checks_common()
 
 void DisplayMsg(SDL_Surface *img, float speed)
 {
+  Uint32 start=SDL_GetTicks();
   Blit(400-img->w/2,250,img);
-  now=SDL_GetTicks();
-  for (i=255*speed;i>=0;i-=(float)(SDL_GetTicks()-now)/2)
+  now=start;
+  for (i=255*speed;i>=0;i=255*speed-(SDL_GetTicks()-start)/2)
   {
     timing();
     SDL_SetAlpha(backbuffer,(SDL_SRCALPHA),255);
