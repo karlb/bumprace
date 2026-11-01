@@ -120,6 +120,7 @@ void timing()
 #ifdef SOUND
   if ((!Mix_PlayingMusic())&&(sound)) {Mix_PlayMusic(music,1);}
 #endif
+  SDL_PumpEvents();
   time_since_start+=game_speed;
   average_speed=time_since_start/frame_count;
   //printf("gamespeed: %f    average: %f \n",game_speed,average_speed);
